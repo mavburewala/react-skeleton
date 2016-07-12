@@ -18,16 +18,12 @@ import Footer from 'components/Footer';
 import Banner from './banner-metal.jpg';
 import A from 'components/A';
 
-import styles from './styles.css';
+//import styles from './styles.css';
 
 function App(props) {
   return (
     <div className={bootstrap.container}>
-      <A className={styles.logoWrapper} href="https://twitter.com/mxstbr">
-        <Img className={styles.logo} src={Banner} alt="react-boilerplate - Logo" />
-      </A>
       {props.children}
-      <Footer />
     </div>
   );
 }
