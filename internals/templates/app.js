@@ -23,6 +23,7 @@ import configureStore from './store';
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 import 'sanitize.css/sanitize.css';
 
+
 // react-tap-event-plugin provides onTouchTap() to all React Components.
 // It's a mobile-friendly onClick() alternative for components in Material-UI,
 // especially useful for the buttons.
