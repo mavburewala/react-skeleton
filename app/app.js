@@ -23,6 +23,15 @@ import FontFaceObserver from 'fontfaceobserver';
 import useScroll from 'react-router-scroll';
 import configureStore from './store';
 
+// react-tap-event-plugin provides onTouchTap() to all React Components.
+// It's a mobile-friendly onClick() alternative for components in Material-UI,
+// especially useful for the buttons.
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
+// MuiThemeProvider is required to inject the theme into  application context for Material-UI to work
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
 import styles from 'containers/App/styles.css';
@@ -68,17 +77,19 @@ const rootRoute = {
 };
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router
-      history={history}
-      routes={rootRoute}
-      render={
-        // Scroll to top when going to a new page, imitating default browser
-        // behaviour
-        applyRouterMiddleware(useScroll())
-      }
-    />
-  </Provider>,
+  <MuiThemeProvider>
+    <Provider store={store}>
+      <Router
+        history={history}
+        routes={rootRoute}
+        render={
+          // Scroll to top when going to a new page, imitating default browser
+          // behaviour
+          applyRouterMiddleware(useScroll())
+        }
+      />
+    </Provider>
+  </MuiThemeProvider>,
   document.getElementById('app')
 );
 

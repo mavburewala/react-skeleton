@@ -11,6 +11,8 @@ import React from 'react';
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 import 'sanitize.css/sanitize.css';
 
+import bootstrap from 'utils/grid.bootstrap.css';
+
 import Img from 'components/Img';
 import Footer from 'components/Footer';
 import Banner from './banner-metal.jpg';
@@ -20,7 +22,7 @@ import styles from './styles.css';
 
 function App(props) {
   return (
-    <div className={styles.wrapper}>
+    <div className={bootstrap.container}>
       <A className={styles.logoWrapper} href="https://twitter.com/mxstbr">
         <Img className={styles.logo} src={Banner} alt="react-boilerplate - Logo" />
       </A>
