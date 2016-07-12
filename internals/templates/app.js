@@ -30,6 +30,9 @@ import 'sanitize.css/sanitize.css';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+// MuiThemeProvider is required to inject the theme into  application context for Material-UI to work
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
 // Optionally, this could be changed to leverage a created history
@@ -54,17 +57,19 @@ const rootRoute = {
 };
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router
-      history={history}
-      routes={rootRoute}
-      render={
-        // Scroll to top when going to a new page, imitating default browser
-        // behaviour
-        applyRouterMiddleware(useScroll())
-      }
-    />
-  </Provider>,
+  <MuiThemeProvider>
+    <Provider store={store}>
+      <Router
+        history={history}
+        routes={rootRoute}
+        render={
+          // Scroll to top when going to a new page, imitating default browser
+          // behaviour
+          applyRouterMiddleware(useScroll())
+        }
+      />
+    </Provider>
+  </MuiThemeProvider>,
   document.getElementById('app')
 );
 
