@@ -19,7 +19,54 @@ import {
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
+
+  CREATE_NEW_QUESTIONNAIRE,
+  CREATE_NEW_QUESTIONNAIRE_SUCCESS,
+  CREATE_NEW_QUESTIONNAIRE_ERROR,
+
 } from './constants';
+
+
+/**
+ * Creates the new questionnaire, this action starts the request saga
+ *
+ * @return {object} An action object with a type of CREATE_NEW_QUESTIONNAIRE
+ */
+export function createNewQuestionnaire() {
+  return {
+    type: CREATE_NEW_QUESTIONNAIRE,
+  };
+}
+
+/**
+ * Dispatched when the new questionnaire is craeted
+ *
+ * @param  {object} newly created questionnaire
+ *
+ * @return {object}      An action object with a type of CREATE_NEW_QUESTIONNAIRE_SUCCESS passing the questionaire
+ */
+export function newQuestionnaireCreated(questionaire) {
+  return {
+    type: CREATE_NEW_QUESTIONNAIRE_SUCCESS,
+    questionaire,
+  };
+}
+
+/**
+ * Dispatched when questionaire creation fails
+ *
+ * @param  {object} error The error
+ *
+ * @return {object}       An action object with a type of CREATE_NEW_QUESTIONNAIRE_ERROR passing the error
+ */
+export function newQuestionnaireError(error) {
+  return {
+    type: CREATE_NEW_QUESTIONNAIRE_ERROR,
+    error,
+  };
+}
+
+
 
 /**
  * Load the repositories, this action starts the request saga
