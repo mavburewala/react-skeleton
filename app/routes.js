@@ -40,6 +40,28 @@ export default function createRoutes(store) {
       },
     },
     {
+      path: '/list',
+      name: 'list',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/List/reducer'),
+          System.import('containers/List/sagas'),
+          System.import('containers/List'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('list', reducer.default);
+          injectSagas(sagas.default);
+
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    },
+    {
       path: '/home',
       name: 'homePage',
       getComponent(nextState, cb) {
