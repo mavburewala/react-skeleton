@@ -1,4 +1,4 @@
-class BaseObject extends BaseObject {
+export default class BaseObject extends BaseObject {
   constructor(ioSource = {}) {
     this.sId = (ioSource.sId || this.GetUniqueId());
   }
@@ -8,7 +8,7 @@ class BaseObject extends BaseObject {
   }
 }
 
-guid() {
+function guid() {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
       .toString(16)

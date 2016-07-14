@@ -1,6 +1,6 @@
 import BaseObject from "./BaseObject";
 
-class Remark extends BaseObject {
+export default class Remark extends BaseObject {
   constructor(ioSource = {}) {
     this.sRemark = (ioSource.sRemark || "");
 

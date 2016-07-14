@@ -17,7 +17,53 @@
 
 import {
   CHANGE_USERNAME,
+
+  LOAD_QUESTIONNAIRE_LIST,
+  LOAD_QUESTIONNAIRE_LIST_SUCCESS,
+  LOAD_QUESTIONNAIRE_LIST_ERROR,
 } from './constants';
+
+
+/**
+ * Loads the list of questionnaires, this action starts the request saga
+ *
+ * @return {object} An action object with a type of LOAD_QUESTIONNAIRE_LIST
+ */
+export function loadQuestionnaireList() {
+  return {
+    type: LOAD_QUESTIONNAIRE_LIST,
+  };
+}
+
+/**
+ * Dispatched when the questionnaire list is loaded
+ *
+ * @param  {array}  list of questionnaire
+ *
+ * @return {array}      An action object with a type of LOAD_QUESTIONNAIRE_LIST_SUCCESS passing the questionaireList
+ */
+export function questionnaireLoaded(questionaireList) {
+  return {
+    type: LOAD_QUESTIONNAIRE_LIST_SUCCESS,
+    questionaireList,
+  };
+}
+
+/**
+ * Dispatched when questionaire list load fails
+ *
+ * @param  {object} error The error
+ *
+ * @return {object}       An action object with a type of LOAD_QUESTIONNAIRE_LIST_ERROR passing the error
+ */
+export function questionnaireLoadingError(error) {
+  return {
+    type: LOAD_QUESTIONNAIRE_LIST_ERROR,
+    error,
+  };
+}
+
+
 
 /**
  * Changes the input field of the form

@@ -1,6 +1,6 @@
 import BaseObject from "./BaseObject";
 
-class Question extends BaseObject {
+export default class Question extends BaseObject {
   constructor(ioSource = {}) {
     this.iSequence = (ioSource.iSequence || "");
     this.sQuestion = (ioSource.sQuestion || "");

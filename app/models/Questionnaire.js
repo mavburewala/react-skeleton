@@ -1,12 +1,12 @@
 import BaseObject from "./BaseObject";
 
-class Questionnaire extends BaseObject {
+export default class Questionnaire extends BaseObject {
   constructor(ioSource = {}) {
     this.oQuestionList = (ioSource.oQuestionList || []);
-    this.oCustomer = (ioSource.oCustomer || "");
+    this.oCustomer = (ioSource.oCustomer || Math.random().toString(36).substring(5));
   }
 
-  AddQuestion () {
-    // ToDo: Add question to the question list.
+  AddQuestion (question) {
+    this.oQuestionList.push(question);
   }
 }

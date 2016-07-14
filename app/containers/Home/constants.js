@@ -10,3 +10,7 @@
  */
 
 export const CHANGE_USERNAME = 'boilerplate/Home/CHANGE_USERNAME';
+
+export const LOAD_QUESTIONNAIRE_LIST = 'royalsatwork/Home/LOAD_QUESTIONNAIRE_LIST';
+export const LOAD_QUESTIONNAIRE_LIST_SUCCESS = 'royalsatwork/Home/LOAD_QUESTIONNAIRE_LIST_SUCCESS';
+export const LOAD_QUESTIONNAIRE_LIST_ERROR = 'royalsatwork/Home/LOAD_QUESTIONNAIRE_LIST_ERROR';

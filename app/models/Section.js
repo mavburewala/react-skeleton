@@ -1,6 +1,6 @@
 import BaseObject from "./BaseObject";
 
-exports class Section extends BaseObject {
+export default class Section extends BaseObject {
   constructor(ioSource = {}) {
     this.sMainSection = (ioSource.sMainSection || "");
     this.sSubSection = (ioSource.sSubSection || "");
