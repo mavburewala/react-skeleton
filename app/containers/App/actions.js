@@ -18,7 +18,11 @@
 import {
   LOAD_QUESTIONNAIRE_LIST,
   LOAD_QUESTIONNAIRE_LIST_SUCCESS,
-  LOAD_QUESTIONNAIRE_LIST_ERROR
+  LOAD_QUESTIONNAIRE_LIST_ERROR,
+
+  GENERATE_TEST_QUESTIONNAIRE,
+  GENERATE_TEST_QUESTIONNAIRE_SUCCESS,
+  GENERATE_TEST_QUESTIONNAIRE_ERROR,
 } from './constants';
 
 
@@ -57,6 +61,47 @@ export function questionnaireListLoaded(questionaireList) {
 export function questionnaireListLoadingError(error) {
   return {
     type: LOAD_QUESTIONNAIRE_LIST_ERROR,
+    error,
+  };
+}
+
+
+/**
+ * Generates the test questionnaire
+ *
+ * @return {object} An action object with a type of GENERATE_TEST_QUESTIONNAIRE
+ */
+export function generateTestQuestionnaire() {
+  return {
+    type: GENERATE_TEST_QUESTIONNAIRE,
+  };
+}
+
+
+/**
+ * Dispatched when the test questionnaire is generated
+ *
+ * @param  {object} newly created questionnaire
+ *
+ * @return {object}      An action object with a type of GENERATE_TEST_QUESTIONNAIRE_SUCCESS passing the questionaire
+ */
+export function testQuestionnaireGenerated(questionaire) {
+  return {
+    type: GENERATE_TEST_QUESTIONNAIRE_SUCCESS,
+    questionaire,
+  };
+}
+
+/**
+ * Dispatched when questionaire generation fails
+ *
+ * @param  {object} error The error
+ *
+ * @return {object}       An action object with a type of GENERATE_TEST_QUESTIONNAIRE_ERROR passing the error
+ */
+export function testQuestionnaireGenerationError(error) {
+  return {
+    type: GENERATE_TEST_QUESTIONNAIRE_ERROR,
     error,
   };
 }

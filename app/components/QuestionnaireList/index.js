@@ -71,7 +71,7 @@ export default class QuestionnaireList extends React.Component {
         </div>
         <div style={{display: 'flex'}}>
           <div style={{flex: 0.1, marginTop: 50, right: 200, position: 'absolute'}}>
-            <FlatButton label="New Questionnaire" />
+            <FlatButton label="New Questionnaire" onTouchTap={this.props.addNewQuestionnaire}/>
           </div>
         </div>
       </div>

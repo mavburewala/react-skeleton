@@ -5,7 +5,7 @@ import Remark from "../models/Remark";
 import Section from "../models/Section";
 
 
-function GetTestData() {
+export function GetTestData() {
   var tiQuestionSequence = 1;
 
   var toSectionPrivateMain = new Section({sMainSection:"Private", sSubSection:"Main", iSequence:100});
@@ -191,7 +191,5 @@ function GetTestData() {
     oSection:toSectionHolidayDream
   }));
 
-  return toQuestionnaire;
+  return new Promise(resolve => setTimeout(() => resolve({questionnaire: toQuestionnaire}), 1000));
 };
-
-export default GetTestData;

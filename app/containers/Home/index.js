@@ -20,7 +20,7 @@ import {
   selectUsername,
 } from './selectors';
 
-import { loadQuestionnaireList } from '../App/actions';
+import { loadQuestionnaireList, generateTestQuestionnaire } from '../App/actions';
 
 import RepoListItem from 'containers/RepoListItem';
 import Button from 'components/Button';
@@ -77,7 +77,7 @@ export class HomePage extends React.Component {
     }
 
     return (
-      <QuestionnaireList></QuestionnaireList>
+      <QuestionnaireList addNewQuestionnaire={this.props.addNewQuestionnaire}></QuestionnaireList>
     );
   }
 }
@@ -94,6 +94,7 @@ HomePage.propTypes = {
     React.PropTypes.bool,
   ]),
   loadQuestionairesList: React.PropTypes.func,
+  addNewQuestionnaire: React.PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -101,6 +102,10 @@ function mapDispatchToProps(dispatch) {
     changeRoute: (url) => dispatch(push(url)),
     loadQuestionairesList: () => {
       dispatch(loadQuestionnaireList());
+    },
+    addNewQuestionnaire: () => {
+      console.log("I m clicked");
+      dispatch(generateTestQuestionnaire());
     },
     dispatch,
   };

@@ -14,8 +14,14 @@ import {
   LOAD_QUESTIONNAIRE_LIST,
   LOAD_QUESTIONNAIRE_LIST_SUCCESS,
   LOAD_QUESTIONNAIRE_LIST_ERROR,
+
+  GENERATE_TEST_QUESTIONNAIRE,
+  GENERATE_TEST_QUESTIONNAIRE_SUCCESS,
+  GENERATE_TEST_QUESTIONNAIRE_ERROR,
 } from './constants';
 import { fromJS } from 'immutable';
+
+var update = require('react/lib/update')
 
 // The initial state of the App
 const initialState = fromJS({
@@ -38,6 +44,18 @@ function appReducer(state = initialState, action) {
         .setIn(['appData', 'questionnaireList'], action.questionaireList)
         .set('loading', false);
     case LOAD_QUESTIONNAIRE_LIST_ERROR:
+      return state
+        .set('error', action.error)
+        .set('loading', false);
+    case GENERATE_TEST_QUESTIONNAIRE:
+      return state
+        .set('loading', true)
+        .set('error', false);
+    case GENERATE_TEST_QUESTIONNAIRE_SUCCESS:
+      return state
+        .set('loading', false)
+        .setIn(['appData', 'questionnaireList'], [action.questionaire])
+    case GENERATE_TEST_QUESTIONNAIRE_ERROR:
       return state
         .set('error', action.error)
         .set('loading', false);

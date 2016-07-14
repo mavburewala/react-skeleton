@@ -12,21 +12,12 @@
 
 import {
   CHANGE_USERNAME,
-
-  LOAD_QUESTIONNAIRE_LIST,
-  LOAD_QUESTIONNAIRE_LIST_SUCCESS,
-  LOAD_QUESTIONNAIRE_LIST_ERROR,
+  
 } from './constants';
 import { fromJS } from 'immutable';
 
 // The initial state of the App
 const initialState = fromJS({
-  loading: false,
-  error: false,
-  currentUser: false,
-  homeData: fromJS({
-    questionnaireList: [],
-  }),
   username: '',
 });
 
