@@ -28,12 +28,12 @@ import Button from 'components/Button';
 import H2 from 'components/H2';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
-import QuestionnaireList from 'components/QuestionnaireList';
+import Overview from 'components/Overview';
 import LoadingIndicator from 'components/LoadingIndicator';
 
 //import styles from './styles.css';
 
-export class HomePage extends React.Component {
+export class OverviewContainer extends React.Component {
   /**
    * when initial state username is not null, submit the form to load repos
    */
@@ -78,12 +78,12 @@ export class HomePage extends React.Component {
     }
 
     return (
-      <QuestionnaireList></QuestionnaireList>
+      <Overview></Overview>
     );
   }
 }
 
-HomePage.propTypes = {
+OverviewContainer.propTypes = {
   changeRoute: React.PropTypes.func,
   loading: React.PropTypes.bool,
   error: React.PropTypes.oneOfType([
@@ -120,4 +120,4 @@ const mapStateToProps = createStructuredSelector({
 });
 
 // Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(OverviewContainer);

@@ -28,7 +28,7 @@ import Button from 'components/Button';
 import H2 from 'components/H2';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
-import Overview from 'components/Overview';
+import QuestionnaireList from 'components/QuestionnaireList';
 import LoadingIndicator from 'components/LoadingIndicator';
 
 //import styles from './styles.css';
@@ -78,7 +78,7 @@ export class HomePage extends React.Component {
     }
 
     return (
-      <Overview></Overview>
+      <QuestionnaireList></QuestionnaireList>
     );
   }
 }

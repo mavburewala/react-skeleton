@@ -8,7 +8,7 @@ import { LOAD_REPOS } from 'containers/App/constants';
 import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
-import { selectUsername } from 'containers/List/selectors';
+import { selectUsername } from 'containers/HomePage/selectors';
 
 /**
  * Github repos request/response handler
