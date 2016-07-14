@@ -18,50 +18,51 @@
 import {
   CHANGE_USERNAME,
 
-  LOAD_QUESTIONNAIRE_LIST,
-  LOAD_QUESTIONNAIRE_LIST_SUCCESS,
-  LOAD_QUESTIONNAIRE_LIST_ERROR,
+  CREATE_NEW_QUESTIONNAIRE,
+  CREATE_NEW_QUESTIONNAIRE_SUCCESS,
+  CREATE_NEW_QUESTIONNAIRE_ERROR,
 } from './constants';
 
 
 /**
- * Loads the list of questionnaires, this action starts the request saga
+ * Creates the new questionnaire, this action starts the request saga
  *
- * @return {object} An action object with a type of LOAD_QUESTIONNAIRE_LIST
+ * @return {object} An action object with a type of CREATE_NEW_QUESTIONNAIRE
  */
-export function loadQuestionnaireList() {
+export function createNewQuestionnaire() {
   return {
-    type: LOAD_QUESTIONNAIRE_LIST,
+    type: CREATE_NEW_QUESTIONNAIRE,
   };
 }
 
 /**
- * Dispatched when the questionnaire list is loaded
+ * Dispatched when the new questionnaire is craeted
  *
- * @param  {array}  list of questionnaire
+ * @param  {object} newly created questionnaire
  *
- * @return {array}      An action object with a type of LOAD_QUESTIONNAIRE_LIST_SUCCESS passing the questionaireList
+ * @return {object}      An action object with a type of CREATE_NEW_QUESTIONNAIRE_SUCCESS passing the questionaire
  */
-export function questionnaireLoaded(questionaireList) {
+export function newQuestionnaireCreated(questionaire) {
   return {
-    type: LOAD_QUESTIONNAIRE_LIST_SUCCESS,
-    questionaireList,
+    type: CREATE_NEW_QUESTIONNAIRE_SUCCESS,
+    questionaire,
   };
 }
 
 /**
- * Dispatched when questionaire list load fails
+ * Dispatched when questionaire creation fails
  *
  * @param  {object} error The error
  *
- * @return {object}       An action object with a type of LOAD_QUESTIONNAIRE_LIST_ERROR passing the error
+ * @return {object}       An action object with a type of CREATE_NEW_QUESTIONNAIRE_ERROR passing the error
  */
-export function questionnaireLoadingError(error) {
+export function newQuestionnaireError(error) {
   return {
-    type: LOAD_QUESTIONNAIRE_LIST_ERROR,
+    type: CREATE_NEW_QUESTIONNAIRE_ERROR,
     error,
   };
 }
+
 
 
 

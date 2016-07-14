@@ -9,8 +9,5 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const CREATE_NEW_QUESTIONNAIRE = 'royalsatwork/Home/CREATE_NEW_QUESTIONNAIRE';
-export const CREATE_NEW_QUESTIONNAIRE_SUCCESS = 'royalsatwork/Home/CREATE_NEW_QUESTIONNAIRE_SUCCESS';
-export const CREATE_NEW_QUESTIONNAIRE_ERROR = 'royalsatwork/Home/CREATE_NEW_QUESTIONNAIRE_ERROR';
 
 export const CHANGE_USERNAME = 'boilerplate/Home/CHANGE_USERNAME';

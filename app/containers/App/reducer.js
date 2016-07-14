@@ -11,9 +11,9 @@
  */
 
 import {
-  LOAD_REPOS_SUCCESS,
-  LOAD_REPOS,
-  LOAD_REPOS_ERROR,
+  LOAD_QUESTIONNAIRE_LIST,
+  LOAD_QUESTIONNAIRE_LIST_SUCCESS,
+  LOAD_QUESTIONNAIRE_LIST_ERROR,
 } from './constants';
 import { fromJS } from 'immutable';
 
@@ -21,25 +21,23 @@ import { fromJS } from 'immutable';
 const initialState = fromJS({
   loading: false,
   error: false,
-  currentUser: false,
-  userData: fromJS({
-    repositories: false,
+  appData: fromJS({
+    questionnaireList: [],
   }),
 });
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_REPOS:
+    case LOAD_QUESTIONNAIRE_LIST:
       return state
         .set('loading', true)
         .set('error', false)
-        .setIn(['userData', 'repositories'], false);
-    case LOAD_REPOS_SUCCESS:
+        .setIn(['appData', 'questionnaireList'], []);
+    case LOAD_QUESTIONNAIRE_LIST_SUCCESS:
       return state
-        .setIn(['userData', 'repositories'], action.repos)
-        .set('loading', false)
-        .set('currentUser', action.username);
-    case LOAD_REPOS_ERROR:
+        .setIn(['appData', 'questionnaireList'], action.questionaireList)
+        .set('loading', false);
+    case LOAD_QUESTIONNAIRE_LIST_ERROR:
       return state
         .set('error', action.error)
         .set('loading', false);

@@ -10,11 +10,6 @@
  */
 
 
-export const LOAD_REPOS = 'royalsatwork/App/LOAD_REPOS';
-export const LOAD_REPOS_SUCCESS = 'royalsatwork/App/LOAD_REPOS_SUCCESS';
-export const LOAD_REPOS_ERROR = 'royalsatwork/App/LOAD_REPOS_ERROR';
-
-
 export const LOAD_QUESTIONNAIRE_LIST = 'royalsatwork/App/LOAD_QUESTIONNAIRE_LIST';
 export const LOAD_QUESTIONNAIRE_LIST_SUCCESS = 'royalsatwork/App/LOAD_QUESTIONNAIRE_LIST_SUCCESS';
 export const LOAD_QUESTIONNAIRE_LIST_ERROR = 'royalsatwork/App/LOAD_QUESTIONNAIRE_LIST_ERROR';
