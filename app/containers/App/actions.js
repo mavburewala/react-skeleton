@@ -20,48 +20,49 @@ import {
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
 
-  CREATE_NEW_QUESTIONNAIRE,
-  CREATE_NEW_QUESTIONNAIRE_SUCCESS,
-  CREATE_NEW_QUESTIONNAIRE_ERROR,
+  LOAD_QUESTIONNAIRE_LIST,
+  LOAD_QUESTIONNAIRE_LIST_SUCCESS,
+  LOAD_QUESTIONNAIRE_LIST_ERROR
+
 
 } from './constants';
 
 
 /**
- * Creates the new questionnaire, this action starts the request saga
+ * Loads the list of questionnaires, this action starts the request saga
  *
- * @return {object} An action object with a type of CREATE_NEW_QUESTIONNAIRE
+ * @return {object} An action object with a type of LOAD_QUESTIONNAIRE_LIST
  */
-export function createNewQuestionnaire() {
+export function loadQuestionnaireList() {
   return {
-    type: CREATE_NEW_QUESTIONNAIRE,
+    type: LOAD_QUESTIONNAIRE_LIST,
   };
 }
 
 /**
- * Dispatched when the new questionnaire is craeted
+ * Dispatched when the  questionnaires list is loaded
  *
- * @param  {object} newly created questionnaire
+ * @param  {array}  questionnaire List
  *
- * @return {object}      An action object with a type of CREATE_NEW_QUESTIONNAIRE_SUCCESS passing the questionaire
+ * @return {object}      An action object with a type of LOAD_QUESTIONNAIRE_LIST_SUCCESS passing the questionaireList
  */
-export function newQuestionnaireCreated(questionaire) {
+export function questionnaireListLoaded(questionaireList) {
   return {
-    type: CREATE_NEW_QUESTIONNAIRE_SUCCESS,
-    questionaire,
+    type: LOAD_QUESTIONNAIRE_LIST_SUCCESS,
+    questionaireList,
   };
 }
 
 /**
- * Dispatched when questionaire creation fails
+ * Dispatched when questionaire list load fails
  *
  * @param  {object} error The error
  *
- * @return {object}       An action object with a type of CREATE_NEW_QUESTIONNAIRE_ERROR passing the error
+ * @return {object}       An action object with a type of LOAD_QUESTIONNAIRE_LIST_ERROR passing the error
  */
-export function newQuestionnaireError(error) {
+export function questionnaireListLoadingError(error) {
   return {
-    type: CREATE_NEW_QUESTIONNAIRE_ERROR,
+    type: LOAD_QUESTIONNAIRE_LIST_ERROR,
     error,
   };
 }
