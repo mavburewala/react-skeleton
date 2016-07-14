@@ -22,7 +22,7 @@ const initialState = fromJS({
   loading: false,
   error: false,
   appData: fromJS({
-    questionnaireList: [],
+    questionnaireList: false,
   }),
 });
 
@@ -32,7 +32,7 @@ function appReducer(state = initialState, action) {
       return state
         .set('loading', true)
         .set('error', false)
-        .setIn(['appData', 'questionnaireList'], []);
+        .setIn(['appData', 'questionnaireList'], false);
     case LOAD_QUESTIONNAIRE_LIST_SUCCESS:
       return state
         .setIn(['appData', 'questionnaireList'], action.questionaireList)

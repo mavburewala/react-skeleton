@@ -39,72 +39,50 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     },
-    {
-      path: '/overview',
-      name: 'overview',
-      getComponent(nextState, cb) {
-        const importModules = Promise.all([
-          System.import('containers/Overview/reducer'),
-          System.import('containers/Overview/sagas'),
-          System.import('containers/Overview'),
-        ]);
-
-        const renderRoute = loadModule(cb);
-
-        importModules.then(([reducer, sagas, component]) => {
-          injectReducer('overview', reducer.default);
-          injectSagas(sagas.default);
-
-          renderRoute(component);
-        });
-
-        importModules.catch(errorLoading);
-      },
-    },
-    {
-      path: '/section',
-      name: 'section',
-      getComponent(nextState, cb) {
-        const importModules = Promise.all([
-          System.import('containers/Section/reducer'),
-          System.import('containers/Section/sagas'),
-          System.import('containers/Section'),
-        ]);
-
-        const renderRoute = loadModule(cb);
-
-        importModules.then(([reducer, sagas, component]) => {
-          injectReducer('section', reducer.default);
-          injectSagas(sagas.default);
-
-          renderRoute(component);
-        });
-
-        importModules.catch(errorLoading);
-      },
-    },
-    {
-      path: '/home',
-      name: 'homePage',
-      getComponent(nextState, cb) {
-        const importModules = Promise.all([
-          System.import('containers/HomePage/reducer'),
-          System.import('containers/HomePage/sagas'),
-          System.import('containers/HomePage'),
-        ]);
-
-        const renderRoute = loadModule(cb);
-
-        importModules.then(([reducer, sagas, component]) => {
-          injectReducer('homePage', reducer.default);
-          injectSagas(sagas.default);
-
-          renderRoute(component);
-        });
-
-        importModules.catch(errorLoading);
-      },
-    },
+    // {
+    //   path: '/overview',
+    //   name: 'overview',
+    //   getComponent(nextState, cb) {
+    //     const importModules = Promise.all([
+    //       System.import('containers/Overview/reducer'),
+    //       System.import('containers/Overview/sagas'),
+    //       System.import('containers/Overview'),
+    //     ]);
+    //
+    //     const renderRoute = loadModule(cb);
+    //
+    //     importModules.then(([reducer, sagas, component]) => {
+    //       injectReducer('overview', reducer.default);
+    //       injectSagas(sagas.default);
+    //
+    //       renderRoute(component);
+    //     });
+    //
+    //     importModules.catch(errorLoading);
+    //   },
+    // },
+    // {
+    //   path: '/section',
+    //   name: 'section',
+    //   getComponent(nextState, cb) {
+    //     const importModules = Promise.all([
+    //       System.import('containers/Section/reducer'),
+    //       System.import('containers/Section/sagas'),
+    //       System.import('containers/Section'),
+    //     ]);
+    //
+    //     const renderRoute = loadModule(cb);
+    //
+    //     importModules.then(([reducer, sagas, component]) => {
+    //       injectReducer('section', reducer.default);
+    //       injectSagas(sagas.default);
+    //
+    //       renderRoute(component);
+    //     });
+    //
+    //     importModules.catch(errorLoading);
+    //   },
+    // },
     {
       path: '/features',
       name: 'features',

@@ -7,42 +7,38 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import { LOAD_QUESTIONNAIRE_LIST } from 'containers/App/constants';
 import { questionnaireListLoaded, questionnaireListLoadingError } from 'containers/App/actions';
 
-import request from 'utils/request';
-import { selectUsername } from 'containers/Home/selectors';
+import { GetQuestionnaireListFromServer } from 'utils/mockServer';
 
 /**
  * Github repos request/response handler
  */
-export function* getRepos() {
-  // Select username from store
-  const username = yield select(selectUsername());
-  const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
+export function* getQuestionnaireList() {
 
   // Call our request helper (see 'utils/request')
-  const repos = yield call(request, requestURL);
+  const list = yield call(GetQuestionnaireListFromServer);
 
-  if (!repos.err) {
-    yield put(reposLoaded(repos.data, username));
+  if (!list.err) {
+    yield put(questionnaireListLoaded(list.questionnaireList));
   } else {
-    yield put(repoLoadingError(repos.err));
+    yield put(questionnaireListLoadingError(list.err));
   }
 }
 
 /**
  * Watches for LOAD_REPOS action and calls handler
  */
-export function* getReposWatcher() {
-  while (yield take(LOAD_REPOS)) {
-    yield call(getRepos);
+export function* getQuestionnaireListWatcher() {
+  while (yield take(LOAD_QUESTIONNAIRE_LIST)) {
+    yield call(getQuestionnaireList);
   }
 }
 
 /**
  * Root saga manages watcher lifecycle
  */
-export function* githubData() {
+export function* questionnaireData() {
   // Fork watcher so we can continue execution
-  const watcher = yield fork(getReposWatcher);
+  const watcher = yield fork(getQuestionnaireListWatcher);
 
   // Suspend execution until location changes
   yield take(LOCATION_CHANGE);
@@ -51,5 +47,5 @@ export function* githubData() {
 
 // Bootstrap sagas
 export default [
-  githubData,
+  questionnaireData,
 ];

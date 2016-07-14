@@ -8,7 +8,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { selectCurrentUser } from 'containers/App/selectors';
+//import { selectCurrentUser } from 'containers/App/selectors';
 
 import ListItem from 'components/ListItem';
 import IssueIcon from 'components/IssueIcon';
@@ -61,6 +61,6 @@ RepoListItem.propTypes = {
 };
 
 export default connect(createSelector(
-  selectCurrentUser(),
+  //selectCurrentUser(),
   (currentUser) => ({ currentUser })
 ))(RepoListItem);

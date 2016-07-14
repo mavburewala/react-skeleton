@@ -11,7 +11,7 @@ import { push } from 'react-router-redux';
 import { createStructuredSelector } from 'reselect';
 
 import {
-  selectRepos,
+  selectQuestionnaireList,
   selectLoading,
   selectError,
 } from 'containers/App/selectors';
@@ -20,8 +20,7 @@ import {
   selectUsername,
 } from './selectors';
 
-import { changeUsername } from './actions';
-import { loadRepos } from '../App/actions';
+import { loadQuestionnaireList } from '../App/actions';
 
 import RepoListItem from 'containers/RepoListItem';
 import Button from 'components/Button';
@@ -38,9 +37,8 @@ export class HomePage extends React.Component {
    * when initial state username is not null, submit the form to load repos
    */
   componentDidMount() {
-    if (this.props.username && this.props.username.trim().length > 0) {
-      this.props.onSubmitForm();
-    }
+    this.props.loadQuestionairesList();
+    console.log("this.props: ", this.props)
   }
   /**
    * Changes the route
@@ -73,8 +71,9 @@ export class HomePage extends React.Component {
       mainContent = (<List component={ErrorComponent} />);
 
     // If we're not loading, don't have an error and there are repos, show the repos
-    } else if (this.props.repos !== false) {
-      mainContent = (<List items={this.props.repos} component={RepoListItem} />);
+    } else if (this.props.questionaireList !== false) {
+      console.log("this.props.questionaireList: ", this.props.questionaireList)
+      //mainContent = (<List items={this.props.repos} component={RepoListItem} />);
     }
 
     return (
@@ -90,31 +89,25 @@ HomePage.propTypes = {
     React.PropTypes.object,
     React.PropTypes.bool,
   ]),
-  repos: React.PropTypes.oneOfType([
+  questionaireList: React.PropTypes.oneOfType([
     React.PropTypes.array,
     React.PropTypes.bool,
   ]),
-  onSubmitForm: React.PropTypes.func,
-  username: React.PropTypes.string,
-  onChangeUsername: React.PropTypes.func,
+  loadQuestionairesList: React.PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
     changeRoute: (url) => dispatch(push(url)),
-    onSubmitForm: (evt) => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadRepos());
+    loadQuestionairesList: () => {
+      dispatch(loadQuestionnaireList());
     },
-
     dispatch,
   };
 }
 
 const mapStateToProps = createStructuredSelector({
-  repos: selectRepos(),
-  username: selectUsername(),
+  questionaireList: selectQuestionnaireList(),
   loading: selectLoading(),
   error: selectError(),
 });
