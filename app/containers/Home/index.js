@@ -17,7 +17,7 @@ import {
 } from 'containers/App/selectors';
 
 import {
-  selectUsername,
+  selectQuestionnaireTable,
 } from './selectors';
 
 import { loadQuestionnaireList, generateTestQuestionnaire } from '../App/actions';
@@ -73,6 +73,7 @@ export class HomePage extends React.Component {
     // If we're not loading, don't have an error and there are repos, show the repos
     } else if (this.props.questionaireList !== false) {
       console.log("this.props.questionaireList: ", this.props.questionaireList)
+      console.log("questionnaireTable: ", this.props.questionnaireTable);
       //mainContent = (<List items={this.props.repos} component={RepoListItem} />);
     }
 
@@ -113,6 +114,7 @@ function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   questionaireList: selectQuestionnaireList(),
+  questionnaireTable: selectQuestionnaireTable(),
   loading: selectLoading(),
   error: selectError(),
 });

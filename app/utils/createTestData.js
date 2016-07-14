@@ -27,7 +27,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionPrivateMain
   }));
 
@@ -37,7 +37,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionPrivateMain
   }));
 
@@ -47,7 +47,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionPrivateMain
   }));
 
@@ -57,7 +57,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionPrivateFood
   }));
 
@@ -67,7 +67,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionPrivateFood
   }));
 
@@ -77,7 +77,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionPrivateFood
   }));
 
@@ -87,7 +87,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionPrivateAnimals
   }));
 
@@ -97,7 +97,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionPrivateAnimals
   }));
 
@@ -107,7 +107,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionPrivateAnimals
   }));
 
@@ -117,7 +117,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionSchoolFirst
   }));
 
@@ -127,7 +127,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionSchoolFirst
   }));
 
@@ -137,7 +137,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionSchoolLast
   }));
 
@@ -147,7 +147,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionSchoolLast
   }));
 
@@ -157,7 +157,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionHolidayLast
   }));
 
@@ -167,7 +167,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionHolidayLast
   }));
 
@@ -177,7 +177,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionHolidayDream
   }));
 
@@ -187,7 +187,7 @@ export function GetTestData() {
     sAnswer:"",
     bApproved:false,
 
-    oQuestionnaire:toQuestionnaire,
+    oQuestionnaire:toQuestionnaire.sId,
     oSection:toSectionHolidayDream
   }));
 
