@@ -2,6 +2,7 @@ import BaseObject from "./BaseObject";
 
 export default class Question extends BaseObject {
   constructor(ioSource = {}) {
+    super();
     this.iSequence = (ioSource.iSequence || "");
     this.sQuestion = (ioSource.sQuestion || "");
     this.sAnswer = (ioSource.sAnswer || "");

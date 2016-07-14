@@ -22,6 +22,7 @@ export function* getQuestionnaireList() {
   // Call our request helper (see 'utils/request')
   const list = yield call(GetQuestionnaireListFromServer);
 
+  console.log("here: ", list);
 
   if (!list.err) {
     yield put(questionnaireListLoaded(list.questionnaireList));
@@ -55,7 +56,6 @@ export function* questionnaireData() {
  * mock server get data handler
  */
 export function* generateTestQuestionnaire() {
-
   // Call our request helper (see 'utils/request')
   const data = yield call(GetTestData);
 
@@ -69,7 +69,7 @@ export function* generateTestQuestionnaire() {
 }
 
 /**
- * Watches for LOAD_QUESTIONNAIRE_LIST action and calls handler
+ * Watches for GENERATE_TEST_QUESTIONNAIRE action and calls handler
  */
 export function* generateTestQuestionnaireWatcher() {
   while (yield take(GENERATE_TEST_QUESTIONNAIRE)) {
