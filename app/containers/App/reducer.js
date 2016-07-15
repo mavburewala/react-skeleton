@@ -41,7 +41,7 @@ function appReducer(state = initialState, action) {
         .setIn(['appData', 'questionnaireList'], false);
     case LOAD_QUESTIONNAIRE_LIST_SUCCESS:
       return state
-        .setIn(['appData', 'questionnaireList'], action.questionaireList)
+        .setIn(['appData', 'questionnaireList'], action.questionnaireList)
         .set('loading', false);
     case LOAD_QUESTIONNAIRE_LIST_ERROR:
       return state
@@ -52,9 +52,11 @@ function appReducer(state = initialState, action) {
         .set('loading', true)
         .set('error', false);
     case GENERATE_TEST_QUESTIONNAIRE_SUCCESS:
+      state.updateIn(['appData', 'questionnaireList'], list => list.push(action.questionnaire))
+      console.log("koko: ", state.getIn(['appData', 'questionnaireList']));
       return state
         .set('loading', false)
-        .setIn(['appData', 'questionnaireList'], [action.questionaire])
+        .updateIn(['appData', 'questionnaireList'], list => list.push(action.questionnaire));
     case GENERATE_TEST_QUESTIONNAIRE_ERROR:
       return state
         .set('error', action.error)

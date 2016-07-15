@@ -44,10 +44,10 @@ export function loadQuestionnaireList() {
  *
  * @return {object}      An action object with a type of LOAD_QUESTIONNAIRE_LIST_SUCCESS passing the questionaireList
  */
-export function questionnaireListLoaded(questionaireList) {
+export function questionnaireListLoaded(questionnaireList) {
   return {
     type: LOAD_QUESTIONNAIRE_LIST_SUCCESS,
-    questionaireList,
+    questionnaireList,
   };
 }
 
@@ -85,10 +85,10 @@ export function generateTestQuestionnaire() {
  *
  * @return {object}      An action object with a type of GENERATE_TEST_QUESTIONNAIRE_SUCCESS passing the questionaire
  */
-export function testQuestionnaireGenerated(questionaire) {
+export function testQuestionnaireGenerated(questionnaire) {
   return {
     type: GENERATE_TEST_QUESTIONNAIRE_SUCCESS,
-    questionaire,
+    questionnaire,
   };
 }
 

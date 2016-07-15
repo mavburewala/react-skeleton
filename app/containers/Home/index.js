@@ -32,13 +32,18 @@ import LoadingIndicator from 'components/LoadingIndicator';
 
 //import styles from './styles.css';
 
-export class HomePage extends React.Component {
+export class Home extends React.Component {
   /**
    * when initial state username is not null, submit the form to load repos
    */
   componentDidMount() {
     this.props.loadQuestionairesList();
     console.log("this.props: ", this.props)
+  }
+
+
+  componentWillReceiveProps() {
+    console.log("New props", this.props.questionaireList);
   }
   /**
    * Changes the route
@@ -83,17 +88,14 @@ export class HomePage extends React.Component {
   }
 }
 
-HomePage.propTypes = {
+Home.propTypes = {
   changeRoute: React.PropTypes.func,
   loading: React.PropTypes.bool,
   error: React.PropTypes.oneOfType([
     React.PropTypes.object,
     React.PropTypes.bool,
   ]),
-  questionaireList: React.PropTypes.oneOfType([
-    React.PropTypes.array,
-    React.PropTypes.bool,
-  ]),
+  questionaireList: React.PropTypes.node,
   loadQuestionairesList: React.PropTypes.func,
   addNewQuestionnaire: React.PropTypes.func,
 };
@@ -120,4 +122,4 @@ const mapStateToProps = createStructuredSelector({
 });
 
 // Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

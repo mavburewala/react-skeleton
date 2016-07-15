@@ -10,18 +10,12 @@ import { push } from 'react-router-redux';
 
 import { createStructuredSelector } from 'reselect';
 
-import {
-  selectRepos,
-  selectLoading,
-  selectError,
-} from 'containers/App/selectors';
 
 import {
   selectUsername,
 } from './selectors';
 
 import { changeUsername } from './actions';
-import { loadRepos } from '../App/actions';
 
 import RepoListItem from 'containers/RepoListItem';
 import Button from 'components/Button';
