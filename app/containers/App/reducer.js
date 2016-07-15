@@ -19,7 +19,7 @@ import {
   GENERATE_TEST_QUESTIONNAIRE_SUCCESS,
   GENERATE_TEST_QUESTIONNAIRE_ERROR,
 } from './constants';
-import { fromJS } from 'immutable';
+import { fromJS, List } from 'immutable';
 
 var update = require('react/lib/update')
 
@@ -28,7 +28,7 @@ const initialState = fromJS({
   loading: false,
   error: false,
   appData: fromJS({
-    questionnaireList: false,
+    questionnaireList:  [],
   }),
 });
 
@@ -38,7 +38,7 @@ function appReducer(state = initialState, action) {
       return state
         .set('loading', true)
         .set('error', false)
-        .setIn(['appData', 'questionnaireList'], false);
+        .setIn(['appData', 'questionnaireList'],  []);
     case LOAD_QUESTIONNAIRE_LIST_SUCCESS:
       return state
         .setIn(['appData', 'questionnaireList'], action.questionnaireList)
@@ -46,16 +46,16 @@ function appReducer(state = initialState, action) {
     case LOAD_QUESTIONNAIRE_LIST_ERROR:
       return state
         .set('error', action.error)
-        .set('loading', false);
+        .set('loading',  []);
     case GENERATE_TEST_QUESTIONNAIRE:
       return state
         .set('loading', true)
         .set('error', false);
     case GENERATE_TEST_QUESTIONNAIRE_SUCCESS:
-      state.updateIn(['appData', 'questionnaireList'], list => list.push(action.questionnaire))
-      console.log("koko: ", state.getIn(['appData', 'questionnaireList']));
+      console.log("Hmmm: ",action.questionnaire )
       return state
         .set('loading', false)
+        //.setIn(['appData', 'questionnaireList'], ([action.questionnaire]))
         .updateIn(['appData', 'questionnaireList'], list => list.push(action.questionnaire));
     case GENERATE_TEST_QUESTIONNAIRE_ERROR:
       return state

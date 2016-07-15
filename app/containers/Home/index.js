@@ -20,7 +20,7 @@ import {
   selectQuestionnaireTable,
 } from './selectors';
 
-import { loadQuestionnaireList, generateTestQuestionnaire } from '../App/actions';
+import { generateTestQuestionnaire } from '../App/actions';
 
 import RepoListItem from 'containers/RepoListItem';
 import Button from 'components/Button';
@@ -37,7 +37,6 @@ export class Home extends React.Component {
    * when initial state username is not null, submit the form to load repos
    */
   componentDidMount() {
-    this.props.loadQuestionairesList();
     console.log("this.props: ", this.props)
   }
 
@@ -77,13 +76,16 @@ export class Home extends React.Component {
 
     // If we're not loading, don't have an error and there are repos, show the repos
     } else if (this.props.questionaireList !== false) {
-      console.log("this.props.questionaireList: ", this.props.questionaireList)
+      console.log("this.props.questionaireList: ", this.props.questionaireList,this.props.questionaireList.length )
       console.log("questionnaireTable: ", this.props.questionnaireTable);
       //mainContent = (<List items={this.props.repos} component={RepoListItem} />);
     }
 
     return (
-      <QuestionnaireList addNewQuestionnaire={this.props.addNewQuestionnaire}></QuestionnaireList>
+      <div>
+        <div>{String(this.props.questionaireList)}</div>
+        <QuestionnaireList addNewQuestionnaire={this.props.addNewQuestionnaire}></QuestionnaireList>
+      </div>
     );
   }
 }
@@ -95,17 +97,16 @@ Home.propTypes = {
     React.PropTypes.object,
     React.PropTypes.bool,
   ]),
-  questionaireList: React.PropTypes.node,
-  loadQuestionairesList: React.PropTypes.func,
+  // questionaireList: React.PropTypes.oneOfType([
+  //   React.PropTypes.object,
+  //   React.PropTypes.bool,
+  // ]),
   addNewQuestionnaire: React.PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     changeRoute: (url) => dispatch(push(url)),
-    loadQuestionairesList: () => {
-      dispatch(loadQuestionnaireList());
-    },
     addNewQuestionnaire: () => {
       console.log("I m clicked");
       dispatch(generateTestQuestionnaire());

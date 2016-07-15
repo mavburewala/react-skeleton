@@ -18,7 +18,7 @@ const selectError = () => createSelector(
 
 const selectQuestionnaireList = () => createSelector(
   selectGlobal(),
-  (globalState) => globalState.getIn(['appData', 'questionnaireList'])
+  (globalState) => globalState.getIn(['appData', 'questionnaireList']).toArray()
 );
 
 const selectLocationState = () => {
