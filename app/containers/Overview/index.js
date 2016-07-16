@@ -12,10 +12,10 @@ import { createStructuredSelector } from 'reselect';
 
 
 import {
-  selectCurrentQuestionnaire,
+  selectCurrentQuestionnaireData,
 } from './selectors';
 
-//import { changeUsername } from './actions';
+import { setCurrentQuestionId } from './actions';
 
 import RepoListItem from 'containers/RepoListItem';
 import Button from 'components/Button';
@@ -30,11 +30,8 @@ import LoadingIndicator from 'components/LoadingIndicator';
 export class OverviewContainer extends React.Component {
 
   componentDidMount() {
-    console.log("Params: ", this.props.params.questionnaireID, this.props.currentQuestionnaire(this.state, this.props))
-    /*this.setState({
-      // route components are rendered with useful information, like URL params
-      user: findUserById(this.props.params.userId)
-    })*/
+    console.log("Params: ", this.props.params.questionnaireID);
+    this.props.onSelectQuestionnaireId(this.props.params.questionnaireID);
   }
   /**
    * Changes the route
@@ -72,7 +69,10 @@ export class OverviewContainer extends React.Component {
     }
 
     return (
-      <Overview></Overview>
+      <div>
+        <Overview currentQuestionnaire={this.props.currentQuestionnaire}></Overview>
+      </div>
+
     );
   }
 }
@@ -95,29 +95,22 @@ OverviewContainer.propTypes = {
 
 function mapDispatchToProps(dispatch) {
   return {
-    currentQuestionnaire: (id) => selectCurrentQuestionnaire(id),
-    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
+    //currentQuestionnaire: (id) => selectCurrentQuestionnaire(id),
     changeRoute: (url) => dispatch(push(url)),
-    onSubmitForm: (evt) => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadRepos());
+    onSelectQuestionnaireId: (questionnaireId) => {
+      dispatch(setCurrentQuestionId(questionnaireId));
     },
 
     dispatch,
   };
 }
 
-const mapStateToProps = (state, props) => {
-  return {
-    currentQuestionnaire: selectCurrentQuestionnaire(state, props)
-  }
-}
-//const mapStateToProps = createStructuredSelector({
-  //repos: selectRepos(),
-  //currentQuestionnaire: selectCurrentQuestionnaire,
+const mapStateToProps = createStructuredSelector({
+  currentQuestionnaire: selectCurrentQuestionnaireData(),
+
   //loading: selectLoading(),
   //error: selectError(),
-//});
+});
 
 // Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps, mapDispatchToProps)(OverviewContainer);
