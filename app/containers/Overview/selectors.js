@@ -66,22 +66,40 @@ const selectCurrentQuestionnaireData = () => createSelector(
     selectCurrentQuestionnaireApprovedQuestions(),
     selectCurrentQuestionnaireMainSections(),
     selectCurrentQuestionnaireSubSections(),
+    selectSectionsData(),
   ],
-  (questionnaire, totalQuestions, completeQuestions, remarks, approvedQuestions, mainSections, subSections) => ({id: questionnaire?questionnaire.sId:'',
+  (questionnaire, totalQuestions,
+    completeQuestions, remarks,
+    approvedQuestions, mainSections,
+    subSections, sectionsData) => ({id: questionnaire?questionnaire.sId:'',
                        totalQuestionsCount: totalQuestions,
                        completeQuestionsCount: completeQuestions,
                        remarksCount: remarks,
                        approvedQuestionsCount: approvedQuestions,
                        mainSectionsCount: mainSections.length,
-                       subSectionsCount: subSections.length
+                       subSectionsCount: subSections.length,
+                       sectionsData: sectionsData,
 
 
                      })
 );
 
+const selectSectionsData = () => createSelector(
+  [ selectCurrentQuestionnaire(),
+    selectCurrentQuestionnaireMainSections(),
+    selectCurrentQuestionnaireTotalSections(),
+  ],
+  (questionnaire, mainSections, totalSections) => mainSections.map(section => ({
+    name: section,
+    totalQuestionsCount: questionnaire? _.filter(questionnaire.oQuestionList, (question)=> question.oSection.sMainSection === section).length: 0,
+    completeQuestionsCount: questionnaire? _.filter(questionnaire.oQuestionList, (question)=> question.oSection.sMainSection === section && question.sAnswer !== "" ).length: 0,
+    remarksCount: 0,
+  })
+));
+
 
 
 export {
   selectHome,
-  selectCurrentQuestionnaireData,
+  selectCurrentQuestionnaireData
 };

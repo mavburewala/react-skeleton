@@ -10,10 +10,6 @@ export default class Overview extends React.Component {
     };
   }
 
-  componentDidMount(){
-    console.log("Gotcha: ", this.props.currentQuestionnaire)
-  }
-
   handleChange = (event, index, value) => this.setState({value});
 
   render() {
@@ -32,54 +28,21 @@ export default class Overview extends React.Component {
           </div>
         </div>
         <div style={{marginTop: 40, height: 400,  flex: 0.9, justifyContent: 'space-between', display: 'flex', flexWrap: 'wrap'}}>
-          <div style={{width: 550, marginTop: 20, marginRight: 10, height: 200, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
-            <div style={{display: 'flex'}}>
-              <div style={{flex: 0.9, display: 'flex', flexDirection: 'column' , padding: 20}}>
-                <h1 style={{alignSelf: 'center'}}>Private</h1>
-                <div style={{alignSelf: 'center'}}>9/9 questions unanswered</div>
-                <div style={{alignSelf: 'center'}}>0 unhandled remarks</div>
-              </div>
-              <div style={{flex: 0.1, marginTop: 10, marginRight: 0}}>
-                <div>0 %</div>
-              </div>
-            </div>
-          </div>
-            <div style={{width: 550,  marginTop: 20,marginRight: 10,height: 200, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
-            <div style={{display: 'flex'}}>
-              <div style={{flex: 0.9, display: 'flex', flexDirection: 'column' , padding: 20}}>
-                <h1 style={{alignSelf: 'center'}}>School</h1>
-                <div style={{alignSelf: 'center'}}>4/4 questions unanswered</div>
-                <div style={{alignSelf: 'center'}}>0 unhandled remarks</div>
-              </div>
-              <div style={{flex: 0.1, marginTop: 10, marginRight: 0}}>
-                <div>0 %</div>
+          {this.props.currentQuestionnaire.sectionsData.map((section, index) => {
+            return <div key={'section_'+index} style={{width: 550, marginTop: 20, marginRight: 10, height: 200, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
+              <div style={{display: 'flex'}}>
+                <div style={{flex: 0.9, display: 'flex', flexDirection: 'column' , padding: 20}}>
+                  <h1 style={{alignSelf: 'center'}}>{section.name}</h1>
+                  <div style={{alignSelf: 'center'}}>{section.totalQuestionsCount - section.completeQuestionsCount}/{section.totalQuestionsCount} questions unanswered</div>
+                  <div style={{alignSelf: 'center'}}>{section.remarksCount} unhandled remarks</div>
+                </div>
+                <div style={{flex: 0.1, marginTop: 10, marginRight: 0}}>
+                  <div>{(section.completeQuestionsCount/section.totalQuestionsCount)*100} %</div>
+                </div>
               </div>
             </div>
-          </div>
-          <div style={{width: 550,  marginTop: 20,marginRight: 10,height: 200, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
-            <div style={{display: 'flex'}}>
-              <div style={{flex: 0.9, display: 'flex', flexDirection: 'column' , padding: 20}}>
-                <h1 style={{alignSelf: 'center'}}>Work</h1>
-                <div style={{alignSelf: 'center'}}>4/4 questions unanswered</div>
-                <div style={{alignSelf: 'center'}}>0 unhandled remarks</div>
-              </div>
-              <div style={{flex: 0.1, marginTop: 10, marginRight: 0}}>
-                <div>0 %</div>
-              </div>
-            </div>
-          </div>
-          <div style={{width: 550,  marginTop: 20, marginRight: 10, height: 200, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
-            <div style={{display: 'flex'}}>
-              <div style={{flex: 0.9, display: 'flex', flexDirection: 'column' , padding: 20}}>
-                <h1 style={{alignSelf: 'center'}}>Holiday</h1>
-                <div style={{alignSelf: 'center'}}>4/4 questions unanswered</div>
-                <div style={{alignSelf: 'center'}}>0 unhandled remarks</div>
-              </div>
-              <div style={{flex: 0.1, marginTop: 10, marginRight: 0}}>
-                <div>0 %</div>
-              </div>
-            </div>
-          </div>
+            })
+          }
         </div>
       </div>
     );
