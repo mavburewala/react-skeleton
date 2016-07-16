@@ -49,8 +49,8 @@ export class Home extends React.Component {
   /**
    * Changed route to '/features'
    */
-  openFeaturesPage = () => {
-    this.openRoute('/features');
+  openOverview = (questionnaireID) => {
+    this.openRoute(`/overview/${questionnaireID}`);
   };
 
   render() {
@@ -74,7 +74,12 @@ export class Home extends React.Component {
 
     return (
       <div>
-        <QuestionnaireList questionnaireData={this.props.questionnaireTable} addNewQuestionnaire={this.props.addNewQuestionnaire}></QuestionnaireList>
+        <QuestionnaireList
+          questionnaireData={this.props.questionnaireTable}
+          addNewQuestionnaire={this.props.addNewQuestionnaire}
+          openOverview= {this.openOverview}
+        >
+        </QuestionnaireList>
       </div>
     );
   }

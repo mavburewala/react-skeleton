@@ -36,6 +36,7 @@ const selectQuestionnaireTable = () => createSelector(
       });
 
       return {
+         Id: questionnaire.sId,
          customerName: questionnaire.oCustomer,
          questionsCount: questionnaire.oQuestionList.length,
          sectionsCount: mainSections.length,

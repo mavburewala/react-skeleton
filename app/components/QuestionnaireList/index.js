@@ -15,6 +15,12 @@ export default class QuestionnaireList extends React.Component {
 
   handleChange = (event, index, value) => this.setState({value});
 
+  clicked(row){
+    console.log("clicked: ", row, this.props.questionnaireData);
+    //this.props.openOverview(this.props.questionnaireData[row].Id)
+  }
+
+
   render() {
     return (
       <div style={{display: 'flex', flexDirection: 'column'}}>
@@ -22,7 +28,7 @@ export default class QuestionnaireList extends React.Component {
           <div style={{marginLeft: 10 }}>Questionaire List</div>
         </div>
         <div style={{marginTop: 20, display: 'flex', flexDirection: 'row', flex: 0.9,}}>
-        <Table>
+        <Table onCellClick={(row)=> this.props.openOverview(this.props.questionnaireData[row].Id)}>
          <TableHeader displayRowCheckbox={false}>
            <TableRow>
              <TableHeaderColumn>Customer</TableHeaderColumn>
@@ -36,7 +42,7 @@ export default class QuestionnaireList extends React.Component {
          <TableBody displayRowCheckbox={false}>
             {this.props.questionnaireData.map((questionnaire, index) => {
                 console.log(questionnaire, "re");
-                return <TableRow key={"questionnaire_"+index}>
+                return <TableRow key={"questionnaire_"+index} >
                   <TableRowColumn>{questionnaire.customerName}</TableRowColumn>
                   <TableRowColumn>{questionnaire.sectionsCount}</TableRowColumn>
                   <TableRowColumn>{questionnaire.subSectionsCount}</TableRowColumn>

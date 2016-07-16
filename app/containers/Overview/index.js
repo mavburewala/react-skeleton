@@ -12,10 +12,10 @@ import { createStructuredSelector } from 'reselect';
 
 
 import {
-  selectUsername,
+  selectCurrentQuestionnaire,
 } from './selectors';
 
-import { changeUsername } from './actions';
+//import { changeUsername } from './actions';
 
 import RepoListItem from 'containers/RepoListItem';
 import Button from 'components/Button';
@@ -28,13 +28,13 @@ import LoadingIndicator from 'components/LoadingIndicator';
 //import styles from './styles.css';
 
 export class OverviewContainer extends React.Component {
-  /**
-   * when initial state username is not null, submit the form to load repos
-   */
+
   componentDidMount() {
-    if (this.props.username && this.props.username.trim().length > 0) {
-      this.props.onSubmitForm();
-    }
+    console.log("Params: ", this.props.params.questionnaireID, this.props.currentQuestionnaire(this.state, this.props))
+    /*this.setState({
+      // route components are rendered with useful information, like URL params
+      user: findUserById(this.props.params.userId)
+    })*/
   }
   /**
    * Changes the route
@@ -95,6 +95,7 @@ OverviewContainer.propTypes = {
 
 function mapDispatchToProps(dispatch) {
   return {
+    currentQuestionnaire: (id) => selectCurrentQuestionnaire(id),
     onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
     changeRoute: (url) => dispatch(push(url)),
     onSubmitForm: (evt) => {
@@ -106,12 +107,17 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const mapStateToProps = createStructuredSelector({
-  repos: selectRepos(),
-  username: selectUsername(),
-  loading: selectLoading(),
-  error: selectError(),
-});
+const mapStateToProps = (state, props) => {
+  return {
+    currentQuestionnaire: selectCurrentQuestionnaire(state, props)
+  }
+}
+//const mapStateToProps = createStructuredSelector({
+  //repos: selectRepos(),
+  //currentQuestionnaire: selectCurrentQuestionnaire,
+  //loading: selectLoading(),
+  //error: selectError(),
+//});
 
 // Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps, mapDispatchToProps)(OverviewContainer);
