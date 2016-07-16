@@ -39,7 +39,11 @@ export class OverviewContainer extends React.Component {
   render() {
     return (
       <div>
-        <Overview currentQuestionnaire={this.props.currentQuestionnaire}></Overview>
+        <Overview
+          currentQuestionnaire={this.props.currentQuestionnaire}
+          openRoute = {this.openRoute}
+        >
+        </Overview>
       </div>
 
     );

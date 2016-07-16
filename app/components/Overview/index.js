@@ -29,7 +29,7 @@ export default class Overview extends React.Component {
         </div>
         <div style={{marginTop: 40, height: 400,  flex: 0.9, justifyContent: 'space-between', display: 'flex', flexWrap: 'wrap'}}>
           {this.props.currentQuestionnaire.sectionsData.map((section, index) => {
-            return <div key={'section_'+index} style={{width: 550, marginTop: 20, marginRight: 10, height: 200, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
+            return <div onTouchTap={()=>this.props.openRoute(`/overview/${this.props.currentQuestionnaire.id}/section/${section.name}/${section.subSection}`)} key={'section_'+index} style={{width: 550, marginTop: 20, marginRight: 10, height: 200, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
               <div style={{display: 'flex'}}>
                 <div style={{flex: 0.9, display: 'flex', flexDirection: 'column' , padding: 20}}>
                   <h1 style={{alignSelf: 'center'}}>{section.name}</h1>

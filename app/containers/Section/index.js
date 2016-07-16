@@ -10,38 +10,20 @@ import { push } from 'react-router-redux';
 
 import { createStructuredSelector } from 'reselect';
 
-import {
-  selectRepos,
-  selectLoading,
-  selectError,
-} from 'containers/App/selectors';
 
 import {
   selectUsername,
 } from './selectors';
 
 import { changeUsername } from './actions';
-import { loadRepos } from '../App/actions';
 
-import RepoListItem from 'containers/RepoListItem';
-import Button from 'components/Button';
-import H2 from 'components/H2';
-import List from 'components/List';
-import ListItem from 'components/ListItem';
 import Section from 'components/Section';
-import LoadingIndicator from 'components/LoadingIndicator';
 
 //import styles from './styles.css';
 
-export class HomePage extends React.Component {
-  /**
-   * when initial state username is not null, submit the form to load repos
-   */
-  componentDidMount() {
-    if (this.props.username && this.props.username.trim().length > 0) {
-      this.props.onSubmitForm();
-    }
-  }
+export class SectionContainer extends React.Component {
+
+
   /**
    * Changes the route
    *
@@ -51,31 +33,7 @@ export class HomePage extends React.Component {
     this.props.changeRoute(route);
   };
 
-  /**
-   * Changed route to '/features'
-   */
-  openFeaturesPage = () => {
-    this.openRoute('/features');
-  };
-
   render() {
-    let mainContent = null;
-
-    // Show a loading indicator when we're loading
-    if (this.props.loading) {
-      mainContent = (<List component={LoadingIndicator} />);
-
-    // Show an error if there is one
-    } else if (this.props.error !== false) {
-      const ErrorComponent = () => (
-        <ListItem item={'Something went wrong, please try again!'} />
-      );
-      mainContent = (<List component={ErrorComponent} />);
-
-    // If we're not loading, don't have an error and there are repos, show the repos
-    } else if (this.props.repos !== false) {
-      mainContent = (<List items={this.props.repos} component={RepoListItem} />);
-    }
 
     return (
       <Section></Section>
@@ -83,41 +41,20 @@ export class HomePage extends React.Component {
   }
 }
 
-HomePage.propTypes = {
+SectionContainer.propTypes = {
   changeRoute: React.PropTypes.func,
-  loading: React.PropTypes.bool,
-  error: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.bool,
-  ]),
-  repos: React.PropTypes.oneOfType([
-    React.PropTypes.array,
-    React.PropTypes.bool,
-  ]),
-  onSubmitForm: React.PropTypes.func,
-  username: React.PropTypes.string,
-  onChangeUsername: React.PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
     changeRoute: (url) => dispatch(push(url)),
-    onSubmitForm: (evt) => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadRepos());
-    },
-
     dispatch,
   };
 }
 
 const mapStateToProps = createStructuredSelector({
-  repos: selectRepos(),
-  username: selectUsername(),
-  loading: selectLoading(),
-  error: selectError(),
+
 });
 
 // Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(SectionContainer);

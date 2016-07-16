@@ -93,6 +93,7 @@ const selectSectionsData = () => createSelector(
     name: section,
     totalQuestionsCount: questionnaire? _.filter(questionnaire.oQuestionList, (question)=> question.oSection.sMainSection === section).length: 0,
     completeQuestionsCount: questionnaire? _.filter(questionnaire.oQuestionList, (question)=> question.oSection.sMainSection === section && question.sAnswer !== "" ).length: 0,
+    subSection: _.sortBy(_.filter(totalSections, (sectionObj) => sectionObj.sMainSection === section ), 'iSequence')[0].sSubSection,
     remarksCount: 0,
   })
 ));
