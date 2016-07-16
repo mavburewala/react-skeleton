@@ -23,7 +23,7 @@ export default class QuestionnaireList extends React.Component {
         </div>
         <div style={{marginTop: 20, display: 'flex', flexDirection: 'row', flex: 0.9,}}>
         <Table>
-         <TableHeader>
+         <TableHeader displayRowCheckbox={false}>
            <TableRow>
              <TableHeaderColumn>Customer</TableHeaderColumn>
              <TableHeaderColumn>Section Count</TableHeaderColumn>
@@ -34,38 +34,18 @@ export default class QuestionnaireList extends React.Component {
            </TableRow>
          </TableHeader>
          <TableBody displayRowCheckbox={false}>
-           <TableRow>
-             <TableRowColumn>Customer 1</TableRowColumn>
-             <TableRowColumn>3</TableRowColumn>
-             <TableRowColumn>4</TableRowColumn>
-             <TableRowColumn>17</TableRowColumn>
-             <TableRowColumn>0</TableRowColumn>
-             <TableRowColumn>17</TableRowColumn>
-           </TableRow>
-           <TableRow>
-             <TableRowColumn>Customer 2</TableRowColumn>
-             <TableRowColumn>5</TableRowColumn>
-             <TableRowColumn>1</TableRowColumn>
-             <TableRowColumn>15</TableRowColumn>
-             <TableRowColumn>1</TableRowColumn>
-             <TableRowColumn>3</TableRowColumn>
-           </TableRow>
-           <TableRow>
-             <TableRowColumn>Customer 3</TableRowColumn>
-             <TableRowColumn>2</TableRowColumn>
-             <TableRowColumn>5</TableRowColumn>
-             <TableRowColumn>11</TableRowColumn>
-             <TableRowColumn>7</TableRowColumn>
-             <TableRowColumn>10</TableRowColumn>
-           </TableRow>
-           <TableRow>
-             <TableRowColumn>Customer 4</TableRowColumn>
-             <TableRowColumn>4</TableRowColumn>
-             <TableRowColumn>2</TableRowColumn>
-             <TableRowColumn>35</TableRowColumn>
-             <TableRowColumn>4</TableRowColumn>
-             <TableRowColumn>0</TableRowColumn>
-           </TableRow>
+            {this.props.questionnaireData.map((questionnaire, index) => {
+                console.log(questionnaire, "re");
+                return <TableRow key={"questionnaire_"+index}>
+                  <TableRowColumn>{questionnaire.customerName}</TableRowColumn>
+                  <TableRowColumn>{questionnaire.sectionsCount}</TableRowColumn>
+                  <TableRowColumn>{questionnaire.subSectionsCount}</TableRowColumn>
+                  <TableRowColumn>{questionnaire.questionsCount}</TableRowColumn>
+                  <TableRowColumn>{questionnaire.remarksCount}</TableRowColumn>
+                  <TableRowColumn>{questionnaire.toDoCount}</TableRowColumn>
+                </TableRow>
+              })
+            }
          </TableBody>
         </Table>
         </div>

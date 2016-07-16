@@ -24,7 +24,6 @@ export function* getQuestionnaireList() {
   // Call our request helper (see 'utils/request')
   const list = yield call(GetQuestionnaireListFromServer);
 
-  console.log("here: ", list);
 
   if (!list.err) {
     yield put(questionnaireListLoaded(list.questionnaireList));
@@ -62,7 +61,6 @@ export function* generateTestQuestionnaire() {
   // Call our request helper (see 'utils/request')
   const data = yield call(GetTestData);
 
-  console.log("received from testData: ", data.questionnaire)
 
   if (!data.err) {
     yield put(testQuestionnaireGenerated(data.questionnaire));

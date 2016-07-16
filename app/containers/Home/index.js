@@ -36,14 +36,7 @@ export class Home extends React.Component {
   /**
    * when initial state username is not null, submit the form to load repos
    */
-  componentDidMount() {
-    console.log("this.props: ", this.props)
-  }
 
-
-  componentWillReceiveProps() {
-    console.log("New props", this.props.questionaireList);
-  }
   /**
    * Changes the route
    *
@@ -76,15 +69,12 @@ export class Home extends React.Component {
 
     // If we're not loading, don't have an error and there are repos, show the repos
     } else if (this.props.questionaireList !== false) {
-      console.log("this.props.questionaireList: ", this.props.questionaireList,this.props.questionaireList.length )
-      console.log("questionnaireTable: ", this.props.questionnaireTable);
       //mainContent = (<List items={this.props.repos} component={RepoListItem} />);
     }
 
     return (
       <div>
-        <div>{String(this.props.questionaireList)}</div>
-        <QuestionnaireList addNewQuestionnaire={this.props.addNewQuestionnaire}></QuestionnaireList>
+        <QuestionnaireList questionnaireData={this.props.questionnaireTable} addNewQuestionnaire={this.props.addNewQuestionnaire}></QuestionnaireList>
       </div>
     );
   }
@@ -108,7 +98,6 @@ function mapDispatchToProps(dispatch) {
   return {
     changeRoute: (url) => dispatch(push(url)),
     addNewQuestionnaire: () => {
-      console.log("I m clicked");
       dispatch(generateTestQuestionnaire());
     },
     dispatch,
