@@ -11,7 +11,7 @@ import {
 } from 'containers/App/selectors';
 
 import {
-  selectCurrentQuestionnaireMainSections
+  selectCurrentQuestionnaireTotalSections
 } from 'containers/Overview/selectors';
 
 
@@ -42,11 +42,21 @@ const selectQuestions = () => createSelector(
   (mainSection, subSection, questionnaire) => questionnaire? _.sortBy(_.filter(questionnaire.oQuestionList, (question)=> question.oSection.sMainSection === mainSection && question.oSection.sSubSection === subSection), (question) =>  question.oSection.iSequence): []
 );
 
+const selectSubSections = () => createSelector(
+  [selectCurrentQuestionnaireTotalSections(),selectMainSection()],
+  (sections, mainSection) => _.filter(sections, (section)=> section.sMainSection ===  mainSection)
+);
+
+const selectSubSectionIndex = () => createSelector(
+  [selectSubSections(),selectSubSection()],
+  (sections, subSection) => _.findIndex(_.sortBy(sections, 'iSequence'), (section) => section.sSubSection === subSection)
+);
+
 
 const selectSectionData = () => createSelector(
   [selectCurrentQuestionnaireId(), selectMainSection(),
-    selectSubSection(), selectQuestions(), selectCurrentQuestionnaireMainSections()],
-  (questionnaireId, mainSection, subSection, questions, sections) => ({
+    selectSubSection(), selectQuestions(), selectSubSections(), selectSubSectionIndex()],
+  (questionnaireId, mainSection, subSection, questions, sections, subSectionIndex) => ({
     questionnaireId: questionnaireId,
     mainSectionName: mainSection,
     subSectionName: subSection,
@@ -56,6 +66,7 @@ const selectSectionData = () => createSelector(
     approvedQuestionsCount: _.filter(questions, (question)=> question.bApproved === true ).length,
     remarks: 0,
     subSectionsCount: sections.length,
+    nextSubSection: subSectionIndex < sections.length? sections[(subSectionIndex+1)].sSubSection: null
 
   })
 );

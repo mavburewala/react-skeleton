@@ -42,6 +42,7 @@ export class SectionContainer extends React.Component {
     return (
       <Section
         currentSection={this.props.currentSection}
+        openRoute = {this.openRoute}
       >
       </Section>
     );
