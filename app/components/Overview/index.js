@@ -24,7 +24,7 @@ export default class Overview extends React.Component {
             Questions are spread over {this.props.currentQuestionnaire.mainSectionsCount} main sections and {this.props.currentQuestionnaire.subSectionsCount} subsections. There are {this.props.currentQuestionnaire.remarksCount} remarks and {this.props.currentQuestionnaire.approvedQuestionsCount} out of {this.props.currentQuestionnaire.totalQuestionsCount} questions have been approved
           </div>
           <div style={{marginLeft: 10, marginTop: 15, flex: 0.1}}>
-            {(this.props.currentQuestionnaire.completeQuestionsCount/this.props.currentQuestionnaire.totalQuestionsCount)*100}%
+            {Math.round((this.props.currentQuestionnaire.completeQuestionsCount/this.props.currentQuestionnaire.totalQuestionsCount)*100)}%
           </div>
         </div>
         <div style={{marginTop: 40, height: 400,  flex: 0.9, justifyContent: 'space-between', display: 'flex', flexWrap: 'wrap'}}>
@@ -37,7 +37,7 @@ export default class Overview extends React.Component {
                   <div style={{alignSelf: 'center'}}>{section.remarksCount} unhandled remarks</div>
                 </div>
                 <div style={{flex: 0.1, marginTop: 10, marginRight: 0}}>
-                  <div>{(section.completeQuestionsCount/section.totalQuestionsCount)*100} %</div>
+                  <div>{Math.round((section.completeQuestionsCount/section.totalQuestionsCount)*100)} %</div>
                 </div>
               </div>
             </div>

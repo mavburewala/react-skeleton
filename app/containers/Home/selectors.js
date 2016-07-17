@@ -34,7 +34,6 @@ const selectQuestionnaireTable = () => createSelector(
           subSections.push(section.sSubSection)
         }
       });
-
       return {
          Id: questionnaire.sId,
          customerName: questionnaire.oCustomer,

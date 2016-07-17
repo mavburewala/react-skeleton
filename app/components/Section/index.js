@@ -37,7 +37,7 @@ export default class Section extends React.Component {
             The questions are spread over {this.props.currentSection.subSectionsCount} sub-sections. There are {this.props.currentSection.remarks} remarks and {this.props.currentSection.approvedQuestionsCount} out of 9 questions have been approved
           </div>
           <div style={{marginLeft: 10, marginTop: 15, flex: 0.1}}>
-            {(this.props.currentSection.completedQuestionsCount/this.props.currentSection.questionsCount)*100}%
+            {Math.round((this.props.currentSection.completedQuestionsCount/this.props.currentSection.questionsCount)*100)}%
           </div>
         </div>
         <div style={{marginTop: 20, display: 'flex',  flexDirection: 'row', flex: 0.9, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',}}>
@@ -52,6 +52,7 @@ export default class Section extends React.Component {
                       <div style={{marginLeft: 10, marginTop: 25, flex: 0.1, display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                         Remarks(0)
                         <Toggle
+                          key={'approve_'+question.sId}
                           defaultToggled={question.bApproved}
                           onToggle={(event, value) => this.approveChange(event, value, question.sId)}
                         >
@@ -61,6 +62,7 @@ export default class Section extends React.Component {
                     <div style={{ padding: 10, display: 'flex', flexDirection: 'column',border: '2px solid black', flex: 0.9, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',}}>
                       <TextField
                         hintText="Answer"
+                        key={'answer'+question.sId}
                         fullWidth= {true}
                         multiLine={true}
                         defaultValue={question.sAnswer}
