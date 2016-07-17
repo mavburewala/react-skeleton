@@ -6,6 +6,7 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 
 
+
 export default class Section extends React.Component {
 
   constructor(props) {
@@ -44,7 +45,7 @@ export default class Section extends React.Component {
           <LinearProgress style={{height: 5, alignSelf: 'center'}} mode="determinate" value={(this.props.currentSection.completedQuestionsCount/this.props.currentSection.questionsCount)*100} />
         </div>
         {this.props.currentSection.questions.map((question, index) => {
-          return  <div key={'question_'+index} style={{marginTop: 40, display: 'flex', flexDirection: 'column', flex: 0.9}} >
+          return  <div key={'question_'+question.sId} style={{marginTop: 40, display: 'flex', flexDirection: 'column', flex: 0.9}} >
                     <div style={{display: 'flex', flexDirection: 'row', flex: 0.9}}>
                       <div style={{marginLeft: 10,  flex: 0.9}}>
                         <h3>{question.sQuestion}</h3>
@@ -73,6 +74,11 @@ export default class Section extends React.Component {
                   </div>
           })
         }
+        <div style={{display: 'flex'}}>
+          <div style={{flex: 0.5, margin: 20, left: 150, position: 'absolute'}}>
+            <FlatButton label="Go Back" onTouchTap={()=>this.props.goBack()}/>
+          </div>
+        </div>
         {this.props.currentSection.nextSubSection !== null &&
           <div style={{display: 'flex'}}>
             <div style={{flex: 0.1, margin: 20, right: 150, position: 'absolute'}}>

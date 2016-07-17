@@ -1,5 +1,6 @@
 import React from 'react';
 import bootstrap from 'utils/grid.bootstrap.css';
+import FlatButton from 'material-ui/FlatButton';
 
 export default class Overview extends React.Component {
 
@@ -43,6 +44,11 @@ export default class Overview extends React.Component {
             </div>
             })
           }
+        </div>
+        <div style={{display: 'flex'}}>
+          <div style={{flex: 0.5, margin: 50, left: 100, position: 'absolute'}}>
+            <FlatButton label="Go Back" onTouchTap={()=>this.props.goBack()}/>
+          </div>
         </div>
       </div>
     );

@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+import { push , goBack} from 'react-router-redux';
 
 import { createStructuredSelector } from 'reselect';
 
@@ -53,8 +53,8 @@ export class SectionContainer extends React.Component {
         onQuestionUpdate= {this.props.onQuestionUpdate}
         onApproveUpdate= {this.props.onApproveUpdate}
         openRoute = {this.openRoute}
-      >
-      </Section>
+        goBack = {this.props.goBack}
+      />
     );
   }
 }
@@ -66,6 +66,8 @@ SectionContainer.propTypes = {
 function mapDispatchToProps(dispatch) {
   return {
     changeRoute: (url) => dispatch(push(url)),
+    goBack: () => dispatch(goBack()),
+
     onSelectQuestionnaireId: (questionnaireId) => {
       dispatch(setCurrentQuestionId(questionnaireId));
     },

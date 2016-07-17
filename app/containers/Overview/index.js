@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+import { push, goBack } from 'react-router-redux';
 
 import { createStructuredSelector } from 'reselect';
 
@@ -42,8 +42,8 @@ export class OverviewContainer extends React.Component {
         <Overview
           currentQuestionnaire={this.props.currentQuestionnaire}
           openRoute = {this.openRoute}
-        >
-        </Overview>
+          goBack = {this.props.goBack}
+        />
       </div>
 
     );
@@ -58,6 +58,7 @@ OverviewContainer.propTypes = {
 function mapDispatchToProps(dispatch) {
   return {
     changeRoute: (url) => dispatch(push(url)),
+    goBack: () => dispatch(goBack()),
     onSelectQuestionnaireId: (questionnaireId) => {
       dispatch(setCurrentQuestionId(questionnaireId));
     },
