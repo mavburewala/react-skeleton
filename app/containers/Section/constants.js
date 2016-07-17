@@ -9,4 +9,6 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const CHANGE_USERNAME = 'boilerplate/Home/CHANGE_USERNAME';
+export const SET_CURRENT_QUESTIONNAIRE_ID = 'royalsatwork/Section/SET_CURRENT_QUESTIONNAIRE_ID';
+export const SET_MAIN_SECTION = 'royalsatwork/Section/SET_MAIN_SECTION';
+export const SET_SUB_SECTION = 'royalsatwork/Section/SET_SUB_SECTION';

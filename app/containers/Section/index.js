@@ -12,10 +12,10 @@ import { createStructuredSelector } from 'reselect';
 
 
 import {
-  selectUsername,
+  selectSectionData,
 } from './selectors';
 
-import { changeUsername } from './actions';
+import { setCurrentQuestionId, setMainSection, setSubSection } from './actions';
 
 import Section from 'components/Section';
 
@@ -24,6 +24,11 @@ import Section from 'components/Section';
 export class SectionContainer extends React.Component {
 
 
+  componentDidMount() {
+    this.props.onSelectQuestionnaireId(this.props.params.questionnaireID);
+    this.props.onSelectMainSection(this.props.params.mainSectionName);
+    this.props.onSelectSubSection(this.props.params.subSectionName);
+  }
   /**
    * Changes the route
    *
@@ -34,9 +39,11 @@ export class SectionContainer extends React.Component {
   };
 
   render() {
-
     return (
-      <Section></Section>
+      <Section
+        currentSection={this.props.currentSection}
+      >
+      </Section>
     );
   }
 }
@@ -48,12 +55,21 @@ SectionContainer.propTypes = {
 function mapDispatchToProps(dispatch) {
   return {
     changeRoute: (url) => dispatch(push(url)),
+    onSelectQuestionnaireId: (questionnaireId) => {
+      dispatch(setCurrentQuestionId(questionnaireId));
+    },
+    onSelectMainSection: (mainSection) => {
+      dispatch(setMainSection(mainSection));
+    },
+    onSelectSubSection: (subSection) => {
+      dispatch(setSubSection(subSection));
+    },
     dispatch,
   };
 }
 
 const mapStateToProps = createStructuredSelector({
-
+  currentSection: selectSectionData(),
 });
 
 // Wrap the component to inject dispatch and state into it

@@ -11,25 +11,33 @@
  */
 
 import {
-  CHANGE_USERNAME,
+  SET_CURRENT_QUESTIONNAIRE_ID,
+  SET_MAIN_SECTION,
+  SET_SUB_SECTION
 } from './constants';
 import { fromJS } from 'immutable';
 
 // The initial state of the App
 const initialState = fromJS({
-  username: '',
+  currentQuestionnaireId: '',
+  mainSection:'',
+  subSection: ''
 });
 
-function homeReducer(state = initialState, action) {
+function sectionReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_USERNAME:
-
-      // Delete prefixed '@' from the github username
+    case SET_CURRENT_QUESTIONNAIRE_ID:
       return state
-        .set('username', action.name.replace(/@/gi, ''));
+        .set('currentQuestionnaireId', action.questionnaireId);
+    case SET_MAIN_SECTION:
+      return state
+        .set('mainSection', action.mainSection);
+    case SET_SUB_SECTION:
+      return state
+        .set('subSection', action.subSection);
     default:
       return state;
   }
 }
 
-export default homeReducer;
+export default sectionReducer;

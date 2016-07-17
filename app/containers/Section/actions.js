@@ -1,34 +1,26 @@
-/*
- * Home Actions
- *
- * Actions change things in your application
- * Since this boilerplate uses a uni-directional data flow, specifically redux,
- * we have these actions which are the only way your application interacts with
- * your appliction state. This guarantees that your state is up to date and nobody
- * messes it up weirdly somewhere.
- *
- * To add a new Action:
- * 1) Import your constant
- * 2) Add a function like this:
- *    export function yourAction(var) {
- *        return { type: YOUR_ACTION_CONSTANT, var: var }
- *    }
- */
-
 import {
-  CHANGE_USERNAME,
+  SET_CURRENT_QUESTIONNAIRE_ID,
+  SET_MAIN_SECTION,
+  SET_SUB_SECTION
 } from './constants';
 
-/**
- * Changes the input field of the form
- *
- * @param  {name} name The new text of the input field
- *
- * @return {object}    An action object with a type of CHANGE_USERNAME
- */
-export function changeUsername(name) {
+export function setCurrentQuestionId(questionnaireId) {
   return {
-    type: CHANGE_USERNAME,
-    name,
+    type: SET_CURRENT_QUESTIONNAIRE_ID,
+    questionnaireId
+  };
+}
+
+export function setMainSection(mainSection) {
+  return {
+    type: SET_MAIN_SECTION,
+    mainSection
+  };
+}
+
+export function setSubSection(subSection) {
+  return {
+    type: SET_SUB_SECTION,
+    subSection
   };
 }

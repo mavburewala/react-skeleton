@@ -102,5 +102,6 @@ const selectSectionsData = () => createSelector(
 
 export {
   selectHome,
-  selectCurrentQuestionnaireData
+  selectCurrentQuestionnaireData,
+  selectCurrentQuestionnaireMainSections
 };
