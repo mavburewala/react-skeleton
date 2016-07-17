@@ -22,6 +22,11 @@ const selectCurrentQuestionnaireId = () => createSelector(
   (selectState) => selectState.get('currentQuestionnaireId')
 );
 
+const selectCurrentQuestionnaireIndex = () => createSelector(
+  [selectQuestionnaireList(), selectCurrentQuestionnaireId()],
+  (questionnaireList, questionnaireId) => _.findIndex(questionnaireList, (questionnaire) => questionnaire.sId === questionnaireId )
+);
+
 const selectCurrentQuestionnaire = () => createSelector(
   [selectQuestionnaireList(), selectCurrentQuestionnaireId()],
   (questionnaireList, questionnaireId) => _.find(questionnaireList, (questionnaire) => questionnaire.sId === questionnaireId )
@@ -55,9 +60,11 @@ const selectSubSectionIndex = () => createSelector(
 
 const selectSectionData = () => createSelector(
   [selectCurrentQuestionnaireId(), selectMainSection(),
-    selectSubSection(), selectQuestions(), selectSubSections(), selectSubSectionIndex()],
-  (questionnaireId, mainSection, subSection, questions, sections, subSectionIndex) => ({
+    selectSubSection(), selectQuestions(), selectSubSections(), selectSubSectionIndex(),
+    selectCurrentQuestionnaireIndex()],
+  (questionnaireId, mainSection, subSection, questions, sections, subSectionIndex, questionnaireIndex) => ({
     questionnaireId: questionnaireId,
+    questionnaireIndex: questionnaireIndex,
     mainSectionName: mainSection,
     subSectionName: subSection,
     questions: questions,

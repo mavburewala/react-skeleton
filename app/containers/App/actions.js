@@ -23,6 +23,9 @@ import {
   GENERATE_TEST_QUESTIONNAIRE,
   GENERATE_TEST_QUESTIONNAIRE_SUCCESS,
   GENERATE_TEST_QUESTIONNAIRE_ERROR,
+
+  ANSWER_UPDATED,
+  APPROVE_UPDATED
 } from './constants';
 
 
@@ -103,5 +106,26 @@ export function testQuestionnaireGenerationError(error) {
   return {
     type: GENERATE_TEST_QUESTIONNAIRE_ERROR,
     error,
+  };
+}
+
+
+export function questionUpdate(questionnaireId, questionnaireIndex, questionId, answer) {
+  return {
+    type: ANSWER_UPDATED,
+    questionnaireId,
+    questionnaireIndex,
+    questionId,
+    answer,
+  };
+}
+
+export function approveUpdate(questionnaireId, questionnaireIndex, questionId, answer) {
+  return {
+    type: APPROVE_UPDATED,
+    questionnaireId,
+    questionnaireIndex,
+    questionId,
+    answer,
   };
 }

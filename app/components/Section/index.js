@@ -10,31 +10,17 @@ export default class Section extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      value: 3,
-      completed: 0,
-    };
   }
 
-  componentDidMount() {
-     this.timer = setTimeout(() => this.progress(5), 1000);
-   }
-
-  componentWillUnmount() {
-     clearTimeout(this.timer);
+  answerChange(event, questionId){
+    console.log("Answer Chnaged: ", event.target.value, questionId, this.props.currentSection.questionnaireIndex);
+    this.props.onQuestionUpdate(this.props.currentSection.questionnaireId, this.props.currentSection.questionnaireIndex,  questionId, event.target.value  )
   }
 
-  progress(completed) {
-    if (completed > 100) {
-      this.setState({completed: 100});
-    } else {
-      this.setState({completed});
-      const diff = Math.random() * 10;
-      this.timer = setTimeout(() => this.progress(completed + diff), 1000);
-    }
+  approveChange(event, value, questionId){
+    console.log("toggle Chnaged: ", event.target.value, questionId);
+    this.props.onApproveUpdate(this.props.currentSection.questionnaireId, this.props.currentSection.questionnaireIndex,  questionId, value )
   }
-
-  handleChange = (event, index, value) => this.setState({value});
 
   render() {
     return (
@@ -55,7 +41,7 @@ export default class Section extends React.Component {
           </div>
         </div>
         <div style={{marginTop: 20, display: 'flex',  flexDirection: 'row', flex: 0.9, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',}}>
-          <LinearProgress style={{height: 5, alignSelf: 'center'}} mode="determinate" value={this.state.completed} />
+          <LinearProgress style={{height: 5, alignSelf: 'center'}} mode="determinate" value={(this.props.currentSection.completedQuestionsCount/this.props.currentSection.questionsCount)*100} />
         </div>
         {this.props.currentSection.questions.map((question, index) => {
           return  <div key={'question_'+index} style={{marginTop: 40, display: 'flex', flexDirection: 'column', flex: 0.9}} >
@@ -65,7 +51,11 @@ export default class Section extends React.Component {
                       </div>
                       <div style={{marginLeft: 10, marginTop: 25, flex: 0.1, display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                         Remarks(0)
-                        <Toggle/>
+                        <Toggle
+                          defaultToggled={question.bApproved}
+                          onToggle={(event, value) => this.approveChange(event, value, question.sId)}
+                        >
+                        </Toggle>
                       </div>
                     </div>
                     <div style={{ padding: 10, display: 'flex', flexDirection: 'column',border: '2px solid black', flex: 0.9, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',}}>
@@ -73,7 +63,8 @@ export default class Section extends React.Component {
                         hintText="Answer"
                         fullWidth= {true}
                         multiLine={true}
-                        rows={2}
+                        defaultValue={question.sAnswer}
+                        onChange={(event) => this.answerChange(event, question.sId)}
                         rowsMax={4}
                       />
                     </div>

@@ -17,6 +17,8 @@ import {
 
 import { setCurrentQuestionId, setMainSection, setSubSection } from './actions';
 
+import {questionUpdate, approveUpdate} from '../App/actions';
+
 import Section from 'components/Section';
 
 //import styles from './styles.css';
@@ -48,6 +50,8 @@ export class SectionContainer extends React.Component {
     return (
       <Section
         currentSection={this.props.currentSection}
+        onQuestionUpdate= {this.props.onQuestionUpdate}
+        onApproveUpdate= {this.props.onApproveUpdate}
         openRoute = {this.openRoute}
       >
       </Section>
@@ -70,6 +74,14 @@ function mapDispatchToProps(dispatch) {
     },
     onSelectSubSection: (subSection) => {
       dispatch(setSubSection(subSection));
+    },
+
+    onQuestionUpdate: (questionnaireId, questionnaireIndex, questionId, answer) =>{
+      dispatch(questionUpdate(questionnaireId, questionnaireIndex, questionId, answer));
+    },
+
+    onApproveUpdate:(questionnaireId, questionnaireIndex, questionId, answer) =>{
+      dispatch(approveUpdate(questionnaireId, questionnaireIndex, questionId, answer));
     },
     dispatch,
   };
