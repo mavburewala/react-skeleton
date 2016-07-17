@@ -1,15 +1,3 @@
-/*
- * AppReducer
- *
- * The reducer takes care of our data. Using actions, we can change our
- * application state.
- * To add a new action, add it to the switch statement in the reducer function
- *
- * Example:
- * case YOUR_ACTION_CONSTANT:
- *   return state.set('yourStateVariable', true);
- */
-
 import {
   LOAD_QUESTIONNAIRE_LIST,
   LOAD_QUESTIONNAIRE_LIST_SUCCESS,
@@ -79,7 +67,7 @@ function appReducer(state = initialState, action) {
       var questionnaire = state.getIn(['appData', 'questionnaireList', action.questionnaireIndex])
       var questionIndex = _.findIndex(questionnaire.oQuestionList, (question) => question.sId === action.questionId );
 
-      console.log("cool: ", state.getIn(['appData', 'questionnaireList', action.questionnaireIndex, 'oQuestionList', questionIndex]));
+      console.log("cool: ", state.getIn(['appData', 'questionnaireList', action.questionnaireIndex]));
       //state.
       questionnaire.oQuestionList[questionIndex].bApproved = action.answer;
       return state

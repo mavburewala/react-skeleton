@@ -191,5 +191,5 @@ export function GetTestData() {
     oSection:toSectionHolidayDream
   }));
 
-  return new Promise(resolve => setTimeout(() => resolve({questionnaire: toQuestionnaire}), 1000));
+  return new Promise(resolve => setTimeout(() => resolve({questionnaire: toQuestionnaire}), 500));
 };

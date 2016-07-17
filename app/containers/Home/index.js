@@ -24,7 +24,6 @@ import { generateTestQuestionnaire } from '../App/actions';
 
 import QuestionnaireList from 'components/QuestionnaireList';
 
-//import styles from './styles.css';
 
 export class Home extends React.Component {
   /**
