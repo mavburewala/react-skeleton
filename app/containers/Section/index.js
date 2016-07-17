@@ -29,6 +29,12 @@ export class SectionContainer extends React.Component {
     this.props.onSelectMainSection(this.props.params.mainSectionName);
     this.props.onSelectSubSection(this.props.params.subSectionName);
   }
+
+  componentWillUpdate(nextProps) {
+    this.props.onSelectQuestionnaireId(nextProps.params? nextProps.params.questionnaireID: this.props.params.questionnaireID);
+    this.props.onSelectMainSection(nextProps.params? nextProps.params.mainSectionName: this.props.params.mainSectionName);
+    this.props.onSelectSubSection(nextProps.params? nextProps.params.subSectionName: this.props.params.subSectionName);
+  }
   /**
    * Changes the route
    *
@@ -68,6 +74,7 @@ function mapDispatchToProps(dispatch) {
     dispatch,
   };
 }
+
 
 const mapStateToProps = createStructuredSelector({
   currentSection: selectSectionData(),

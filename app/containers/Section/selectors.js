@@ -66,7 +66,7 @@ const selectSectionData = () => createSelector(
     approvedQuestionsCount: _.filter(questions, (question)=> question.bApproved === true ).length,
     remarks: 0,
     subSectionsCount: sections.length,
-    nextSubSection: subSectionIndex < sections.length? sections[(subSectionIndex+1)].sSubSection: null
+    nextSubSection: subSectionIndex < sections.length? (sections[(subSectionIndex+1)] != null && sections[(subSectionIndex+1)] != undefined? sections[(subSectionIndex+1)].sSubSection: null): null
 
   })
 );

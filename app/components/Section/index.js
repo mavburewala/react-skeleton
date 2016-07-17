@@ -80,11 +80,14 @@ export default class Section extends React.Component {
                   </div>
           })
         }
-        <div style={{display: 'flex'}}>
-          <div style={{flex: 0.1, margin: 20, right: 150, position: 'absolute'}}>
-            <FlatButton label="Next Sub-Section" onTouchTap={()=>this.props.openRoute(`/overview/${this.props.currentSection.questionnaireId}/section/${this.props.currentSection.mainSectionName}/${this.props.currentSection.nextSubSection}`)}/>
+        {this.props.currentSection.nextSubSection !== null &&
+          <div style={{display: 'flex'}}>
+            <div style={{flex: 0.1, margin: 20, right: 150, position: 'absolute'}}>
+              <FlatButton label="Next Sub-Section" onTouchTap={()=>this.props.openRoute(`/overview/${this.props.currentSection.questionnaireId}/section/${this.props.currentSection.mainSectionName}/${this.props.currentSection.nextSubSection}`)}/>
+            </div>
           </div>
-        </div>
+        }
+
       </div>
     );
   }
