@@ -58,7 +58,7 @@ function appReducer(state = initialState, action) {
 
       console.log("cool: ", state.getIn(['appData', 'questionnaireList']));
 
-      console.log(questionnaire.setIn(['oQuestionList']));
+      //console.log(questionnaire.setIn(['oQuestionList']));
       //state.
       questionnaire.oQuestionList[questionIndex].sAnswer = action.answer;
       return state
