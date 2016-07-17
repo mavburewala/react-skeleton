@@ -81,7 +81,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const mapStateToProps = createStructuredSelector({
+const mapStateToProps =  state => createStructuredSelector({
   questionaireList: selectQuestionnaireList(),
   questionnaireTable: selectQuestionnaireTable(),
   loading: selectLoading(),

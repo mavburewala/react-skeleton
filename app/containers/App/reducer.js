@@ -45,10 +45,8 @@ function appReducer(state = initialState, action) {
         .set('loading', true)
         .set('error', false);
     case GENERATE_TEST_QUESTIONNAIRE_SUCCESS:
-      console.log("hello: ", action.questionnaire);
       return state
         .set('loading', false)
-        //.setIn(['appData', 'questionnaireList'], ([action.questionnaire]))
         .updateIn(['appData', 'questionnaireList'], list => list.push(fromJS(action.questionnaire)));
     case GENERATE_TEST_QUESTIONNAIRE_ERROR:
       return state
@@ -59,6 +57,8 @@ function appReducer(state = initialState, action) {
       var questionIndex = _.findIndex(questionnaire.oQuestionList, (question) => question.sId === action.questionId );
 
       console.log("cool: ", state.getIn(['appData', 'questionnaireList']));
+
+      console.log(questionnaire.setIn(['oQuestionList']));
       //state.
       questionnaire.oQuestionList[questionIndex].sAnswer = action.answer;
       return state
