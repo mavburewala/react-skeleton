@@ -9,6 +9,8 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 
 import globalReducer from 'containers/App/reducer';
 
+import { i18n } from 'redux-pagan';
+
 /*
  * routeReducer
  *
@@ -42,6 +44,7 @@ function routeReducer(state = routeInitialState, action) {
  */
 export default function createReducer(asyncReducers) {
   return combineReducers({
+    i18n,
     route: routeReducer,
     global: globalReducer,
     ...asyncReducers,

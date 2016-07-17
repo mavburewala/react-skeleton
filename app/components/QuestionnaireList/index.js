@@ -4,28 +4,32 @@ import bootstrap from 'utils/grid.bootstrap.css';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+
 export default class QuestionnaireList extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      value: 3,
+      locale: 'en',
     };
   }
 
-  handleChange = (event, index, value) => this.setState({value});
-
-  clicked(row){
-    console.log("clicked: ", row, this.props.questionnaireData);
-    //this.props.openOverview(this.props.questionnaireData[row].Id)
-  }
+  handleLocaleChange = (event, index, value) => {console.log(value);this.setState({value})};
 
 
   render() {
     return (
       <div style={{display: 'flex', flexDirection: 'column'}}>
-        <div style={{padding: 10, marginTop: 20,  flex: 0.9, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',}}>
-          <div style={{marginLeft: 10 }}>Questionaire List</div>
+        <div style={{display: 'flex', flexDirection: 'row', padding: 10, marginTop: 20,  flex: 0.9, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',}}>
+          <div style={{marginLeft: 10, flex: 0.9 }}>Questionaire List</div>
+          <div>
+          <SelectField value={this.state.locale} onChange={this.handleLocaleChange}>
+            <MenuItem value={"en"} primaryText="English"/>
+            <MenuItem value={"du"} primaryText="Dutch"/>
+          </SelectField>
+          </div>
         </div>
         <div style={{marginTop: 20, display: 'flex', flexDirection: 'row', flex: 0.9,}}>
         <Table onCellClick={(row)=> this.props.openOverview(this.props.questionnaireData[row].Id)}>
