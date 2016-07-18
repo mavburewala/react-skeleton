@@ -14,12 +14,10 @@ export default class Section extends React.Component {
   }
 
   answerChange(event, questionId){
-    console.log("Answer Chnaged: ", event.target.value, questionId, this.props.currentSection.questionnaireIndex);
     this.props.onQuestionUpdate(this.props.currentSection.questionnaireId, this.props.currentSection.questionnaireIndex,  questionId, event.target.value  )
   }
 
   approveChange(event, value, questionId){
-    console.log("toggle Chnaged: ", event.target.value, questionId);
     this.props.onApproveUpdate(this.props.currentSection.questionnaireId, this.props.currentSection.questionnaireIndex,  questionId, value )
   }
 
@@ -35,7 +33,7 @@ export default class Section extends React.Component {
         <div style={{marginTop: 10, display: 'flex', flexDirection: 'row', flex: 0.9, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',}}>
           <div style={{marginLeft: 10, padding: 15, flex: 0.9}}>
             This Section has {this.props.currentSection.questionsCount} questions. {this.props.currentSection.questionsCount - this.props.currentSection.completedQuestionsCount} of these questions are unanswered.
-            The questions are spread over {this.props.currentSection.subSectionsCount} sub-sections. There are {this.props.currentSection.remarks} remarks and {this.props.currentSection.approvedQuestionsCount} out of 9 questions have been approved
+            The questions are spread over {this.props.currentSection.subSectionsCount} sub-sections. There are {this.props.currentSection.remarks} remarks and {this.props.currentSection.approvedQuestionsCount} out of {this.props.currentSection.subSectionsCount} questions have been approved
           </div>
           <div style={{marginLeft: 10, marginTop: 15, flex: 0.1}}>
             {Math.round((this.props.currentSection.completedQuestionsCount/this.props.currentSection.questionsCount)*100)}%
