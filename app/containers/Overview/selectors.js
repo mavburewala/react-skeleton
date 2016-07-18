@@ -19,7 +19,7 @@ const selectCurrentQuestionnaireId = () => createSelector(
 
 const selectCurrentQuestionnaire = () => createSelector(
   [selectQuestionnaireList(), selectCurrentQuestionnaireId()],
-  (questionnaireList, questionnaireId) => {console.log("calculating: ", questionnaireList);return questionnaireList.find((questionnaire) => questionnaire.sId === questionnaireId)}
+  (questionnaireList, questionnaireId) => questionnaireList.find((questionnaire) => questionnaire.sId === questionnaireId)
 );
 
 

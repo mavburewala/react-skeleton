@@ -47,7 +47,7 @@ function appReducer(state = initialState, action) {
     case GENERATE_TEST_QUESTIONNAIRE_SUCCESS:
       return state
         .set('loading', false)
-        .updateIn(['appData', 'questionnaireList'], list => list.push(fromJS(action.questionnaire)));
+        .updateIn(['appData', 'questionnaireList'], list => list.push(action.questionnaire));
     case GENERATE_TEST_QUESTIONNAIRE_ERROR:
       return state
         .set('error', action.error)
@@ -55,23 +55,15 @@ function appReducer(state = initialState, action) {
     case ANSWER_UPDATED:
       var questionnaire = state.getIn(['appData', 'questionnaireList', action.questionnaireIndex])
       var questionIndex = _.findIndex(questionnaire.oQuestionList, (question) => question.sId === action.questionId );
-
-      console.log("cool: ", state.getIn(['appData', 'questionnaireList']));
-
-      //console.log(questionnaire.setIn(['oQuestionList']));
-      //state.
       questionnaire.oQuestionList[questionIndex].sAnswer = action.answer;
       return state
-        .setIn(['appData', 'questionnaireList', action.questionnaireIndex], fromJS(questionnaire));
+        .setIn(['appData', 'questionnaireList', action.questionnaireIndex], Object.assign({}, questionnaire));
     case APPROVE_UPDATED:
       var questionnaire = state.getIn(['appData', 'questionnaireList', action.questionnaireIndex])
       var questionIndex = _.findIndex(questionnaire.oQuestionList, (question) => question.sId === action.questionId );
-
-      console.log("cool: ", state.getIn(['appData', 'questionnaireList', action.questionnaireIndex]));
-      //state.
       questionnaire.oQuestionList[questionIndex].bApproved = action.answer;
       return state
-        .setIn(['appData', 'questionnaireList', action.questionnaireIndex], fromJS(questionnaire));
+        .setIn(['appData', 'questionnaireList', action.questionnaireIndex], Object.assign({},questionnaire));
     default:
       return state;
   }
